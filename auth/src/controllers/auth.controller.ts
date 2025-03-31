@@ -1,15 +1,21 @@
 import { Request, Response } from "express";
 import bcrypt from "bcrypt";
 import jwt from "jsonwebtoken";
-import {User} from "../models/user";
 import {StatusCodes} from "http-status-codes";
-import {authenticateSchema, userLoginSchema, userRegisterSchema} from "../schemas/user.schema";
+import {userLoginSchema, userRegisterSchema} from "../schemas/user.schema";
+import prisma from "../lib/prisma";
 
 export const registerController = async (req: Request, res: Response) => {
     const { name, email, password } = userRegisterSchema.parse(req.body);
     const passwordHash = await bcrypt.hash(password, 10);
 
-    const newUser = await User.create({ name, email, passwordHash });
+    const newUser = await prisma.user.create({
+        data: {
+            name,
+            email,
+            password: passwordHash
+        }
+    });
 
     res.status(StatusCodes.OK).json(newUser);
 };
@@ -17,8 +23,12 @@ export const registerController = async (req: Request, res: Response) => {
 export const loginController = async (req: Request, res: Response) => {
     const { email, password } = userLoginSchema.parse(req.body);
 
-    const user = await User.findOne({ email });
-    if (!user || !(await bcrypt.compare(password, user.passwordHash))) {
+    const user = await prisma.user.findUnique({
+        where: {
+            email
+        }
+    });
+    if (!user || !(await bcrypt.compare(password, user.password))) {
         res.status(StatusCodes.UNAUTHORIZED).json({ message: "Invalid email or password" });
         return;
     }

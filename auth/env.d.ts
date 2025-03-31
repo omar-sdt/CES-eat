@@ -3,10 +3,12 @@
 namespace NodeJS {
     interface ProcessEnv {
         PORT: string;
-        DB_NAME: string;
-        DB_USER: string;
-        DB_PASS: string;
-        DB_AUTH_SOURCE: string;
-        ACCESS_JWT_KEY: string;
+        MONGO_DB_HOST: string;
+        MONGO_DB_NAME: string;
+        MONGO_DB_USER: string;
+        MONGO_DB_PASS: string;
+        MONGO_DB_AUTH_SOURCE: string;
+        MONGO_ACCESS_JWT_KEY: string;
+        DATABASE_URL: string;
     }
 }

@@ -5,11 +5,11 @@ dotenv.config();
 
 export const connectDB = async () => {
     try {
-        await mongoose.connect('mongodb://mongo:27017', {
-            dbName: process.env.DB_NAME,
-            user: process.env.DB_USER,
-            pass: process.env.DB_PASS,
-            authSource: process.env.DB_AUTH_SOURCE,
+        await mongoose.connect(`mongodb://${process.env.MONGO_DB_HOST}:27017`, {
+            dbName: process.env.MONGO_DB_NAME,
+            user: process.env.MONGO_DB_USER,
+            pass: process.env.MONGO_DB_PASS,
+            authSource: process.env.MONGO_DB_AUTH_SOURCE,
         });
         console.log('✅ Connected to MongoDB');
     } catch (error) {
