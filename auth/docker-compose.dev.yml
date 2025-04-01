@@ -22,7 +22,20 @@ services:
       MONGO_INITDB_ROOT_PASSWORD: root
     volumes:
       - mongo-data:/data/db
+  rabbitmq:
+    image: rabbitmq:3-management
+    container_name: rabbitmq
+    restart: always
+    ports:
+      - "5672:5672"     # port AMQP pour les apps
+      - "15672:15672"   # port UI de gestion
+    environment:
+      RABBITMQ_DEFAULT_USER: root
+      RABBITMQ_DEFAULT_PASS: root
+    volumes:
+      - rabbitmq-data:/var/lib/rabbitmq
 
 volumes:
   db-data:
   mongo-data:
+  rabbitmq-data:

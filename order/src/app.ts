@@ -23,6 +23,7 @@ import {
     getOrdersByUser,
     validateOrder
 } from "./controllers/order.controller";
+import {initRabbit} from "./lib/rabbit";
 
 dotenv.config();
 
@@ -57,7 +58,7 @@ app.get('/order/:userId/user', getOrdersByUser);
 
 const start = async () => {
     await connectDB();
-
+    await initRabbit();
     app.listen(process.env.PORT, () => {
         return console.log(`Express is listening at http://localhost:${process.env.PORT}`);
     });
