@@ -1,3 +1,4 @@
+import { Request, Response } from "express";
 import {Dish} from "../models/dishes";
 import {dishPostSchema} from "../schemas/dish.schema";
 import {StatusCodes} from "http-status-codes";

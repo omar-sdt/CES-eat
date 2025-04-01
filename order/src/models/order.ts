@@ -18,3 +18,5 @@ const orderSchema = new mongoose.Schema({
     totalAmount: { type: Number, required: true },
     deliveryAddress: { type: String, required: true }
 }, { timestamps: true });
+
+export const Order = mongoose.model('Order', orderSchema);

@@ -15,6 +15,14 @@ import {
     getDishController,
     getRestaurantDishesController
 } from "./controllers/dish.controller";
+import {orderPostSchema} from "./schemas/order.schema";
+import {
+    cancelOrder,
+    createOrderController,
+    getOrderController,
+    getOrdersByUser,
+    validateOrder
+} from "./controllers/order.controller";
 
 dotenv.config();
 
@@ -38,6 +46,14 @@ app.post('/dish', validateData(dishPostSchema), createDishController);
 app.get('/dish/:restaurantId', getRestaurantDishesController);
 app.get('/dish/:dishId/view', getDishController);
 app.get('/dishes', getAllDishesController);
+
+// Routes /orders
+app.post('/order', validateData(orderPostSchema), createOrderController);
+app.get('/order/:orderId', getOrderController);
+app.put('/order/:orderId/validate', validateOrder);
+app.put('/order/:orderId/cancel', cancelOrder);
+app.get('/order/:userId/user', getOrdersByUser);
+
 
 const start = async () => {
     await connectDB();
