@@ -55,7 +55,14 @@ services:
       - "3000"
     depends_on:
       - auth-service
-
+  order-service:
+    build: ./order
+    container_name: order-service
+    expose:
+      - "3000"
+    depends_on:
+      - auth-service
+      - mongo
   mongo-express:
     image: mongo-express
     container_name: mongo-express

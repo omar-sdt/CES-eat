@@ -32,5 +32,12 @@ ENV DB_PASS=root
 ENV DB_AUTH_SOURCE=admin
 ENV ACCESS_JWT_KEY=secret
 
+ENV MONGO_DB_HOST=mongo
+ENV MONGO_DB_NAME=mydb
+ENV MONGO_DB_USER=root
+ENV MONGO_DB_PASS=root
+ENV MONGO_DB_AUTH_SOURCE=admin
+ENV ACCESS_JWT_KEY=secret
+
 # Start the application
 CMD [ "node", "dist/app.js" ]
