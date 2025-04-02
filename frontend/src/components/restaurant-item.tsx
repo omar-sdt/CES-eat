@@ -1,5 +1,6 @@
 import { restaurantSchema, Restaurant } from '@/schemas/restaurantSchema';
 import { Star } from 'lucide-react';
+import { Link } from 'react-router-dom';
 
 type RestaurantItemProps = {
     resto: Restaurant;
@@ -12,18 +13,21 @@ const RestaurantItem = ({ resto }: RestaurantItemProps) => {
         return <div>Erreur de données : {result.error.message}</div>;
     }
 
-    const { name, address, rating, src, alt } = result.data;
+    const { id, name, address, rating, src, alt } = result.data;
 
     return (
-        <div className="flex flex-col gap-2 w-[236px] group">
-            <div className="relative w-full">
+        <Link className="flex flex-col gap-2 w-[236px] group" to={`/restaurant/${id}`}>
+
+            <div className="relative w-full min-h-[7rem]">
+                {/* Effet de blur devant l'image */}
+                <div className="z-0 absolute inset-0 bg-green-primary opacity-0 group-hover:opacity-100 transition-opacity duration-200 ease-in-out blur-md rounded-lg z-10"></div>
+
                 <img
                     src={src}
                     alt={alt}
-                    className="w-full h-auto rounded-lg shadow-lg"
+                    className="w-full h-auto rounded-lg shadow-lg z-10 absolute"
                     style={{ maxHeight: '200px', objectFit: 'cover' }}
                 />
-                <div className="absolute bottom-0 left-0 w-full h-1 bg-green-500 scale-x-0 group-hover:scale-x-100 transition-transform duration-300 ease-in-out"></div>
             </div>
 
             <div className="flex flex-row justify-between">
@@ -37,7 +41,7 @@ const RestaurantItem = ({ resto }: RestaurantItemProps) => {
 
                 <div><p className="text-sm text-gray-600">14 km</p></div>
             </div>
-        </div >
+        </Link >
     );
 };
 
