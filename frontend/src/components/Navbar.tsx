@@ -2,13 +2,12 @@ import { Link, useLocation } from 'react-router-dom';
 import { Button } from './ui/button';
 import Panier from './cart';
 import { CookingPot } from 'lucide-react';
-import { useAuth } from '@/context/AuthContext';
+import { useAuth } from '@/context/auth-context';
 import { DropdownNavbar } from './drop-down-navbar';
 
 const Navbar = () => {
   const { accessToken } = useAuth();
   const location = useLocation();
-
   const isLoginPage = location.pathname === "/login";
 
   return (
