@@ -1,8 +1,9 @@
 import { Link, useLocation } from 'react-router-dom';
 import { Button } from './ui/button';
 import Panier from './cart';
-import { ReceiptText, User } from 'lucide-react';
+import { CookingPot } from 'lucide-react';
 import { useAuth } from '@/context/AuthContext';
+import { DropdownNavbar } from './drop-down-navbar';
 
 const Navbar = () => {
   const { accessToken } = useAuth();
@@ -24,7 +25,10 @@ const Navbar = () => {
         {/* Si on est sur la page de login, on n'affiche que le bouton Accueil */}
         {isLoginPage ? (
           <Button variant="secondary" size="navbar" effect="shineHover" asChild>
-            <Link to="/home">Accueil</Link>
+            <Link to="/home">
+              <CookingPot />
+              Accueil
+            </Link>
           </Button>
         ) : (
           <>
@@ -33,19 +37,7 @@ const Navbar = () => {
             {/* Afficher les boutons "Mes commandes" et "Mon compte" uniquement si l'utilisateur est connecté */}
             {accessToken ? (
               <>
-                <Button variant="secondary" size="navbar" effect="shineHover" className="" asChild>
-                  <Link to="/orders">
-                    <ReceiptText />
-                    Mes commandes
-                  </Link>
-                </Button>
-
-                <Button variant="secondary" size="navbar" effect="shineHover" className="" asChild>
-                  <Link to="/profile">
-                    <User />
-                    Mon compte
-                  </Link>
-                </Button>
+                <DropdownNavbar />
               </>
             ) : (
               <Button variant="secondary" size="navbar" effect="shineHover" className="" asChild>
