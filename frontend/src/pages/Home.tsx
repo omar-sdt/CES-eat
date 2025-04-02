@@ -1,5 +1,6 @@
 "use client";
 
+import SponsorshipSection from "@/components/sponsorship-section";
 import { Button } from "@/components/ui/button";
 import { useState } from "react";
 
@@ -67,6 +68,19 @@ const Home = () => {
                     </Button>
                 </div>
             </div>
+
+            {selectedFilter ? (
+                <div className="w-full flex flex-col items-center mt-4">
+                    <h2 className="text-xl font-bold mb-4">Résultats pour "{selectedFilter}"</h2>
+                    {/* Afficher les résultats ici */}
+                </div>
+            ) : (
+                <>
+                    <SponsorshipSection />
+                </>
+
+
+            )}
         </div>
     );
 };
