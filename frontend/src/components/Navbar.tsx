@@ -12,7 +12,7 @@ const Navbar = () => {
 
   return (
     <nav
-      className={`w-full flex flex-row position-sticky top-0 z-50 ${isLoginPage ? 'bg-black text-white' : 'backdrop-filter backdrop-blur-lg'}`}
+      className={`w-full flex flex-row sticky top-0 z-50 ${isLoginPage ? 'bg-black text-white' : 'backdrop-filter backdrop-blur-lg'}`}
     >
       <div className={`pl-6 pr-8 py-2 clip-path ${isLoginPage ? 'bg-black' : 'bg-primary'}`}>
         <Link to="/home">
