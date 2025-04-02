@@ -8,6 +8,8 @@ import { JSX } from "react"
 import Navbar from "@/components/navbar"
 import { CartProvider } from "./context/cart-context"
 import { FilterProvider } from "./context/filter-context"
+import Register from "./pages/register"
+import Restaurant from "./pages/restaurant"
 
 function PrivateRoute({ element }: { element: JSX.Element }) {
   const { accessToken } = useAuth();
@@ -32,6 +34,9 @@ function App() {
                 <Route path="/home" element={<Home />} />
                 <Route path="/orders" element={<PrivateRoute element={<Orders />} />} />
                 <Route path="/login" element={<Login />} />
+                <Route path="/register" element={<Register />} />
+                <Route path="/restaurant/:id" element={<Restaurant />} />
+
 
                 {/* Routes privées */}
                 <Route path="/profile" element={<PrivateRoute element={<Profile />} />} />

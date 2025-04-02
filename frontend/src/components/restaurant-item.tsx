@@ -13,7 +13,7 @@ const RestaurantItem = ({ resto }: RestaurantItemProps) => {
         return <div>Erreur de données : {result.error.message}</div>;
     }
 
-    const { id, name, address, rating, src, alt } = result.data;
+    const { id, name, rating, src, alt } = result.data;
 
     return (
         <Link className="flex flex-col gap-2 w-[236px] group" to={`/restaurant/${id}`}>
