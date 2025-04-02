@@ -36,6 +36,9 @@
       "@stores/*": [
         "./src/stores/*"
       ],
+      "@data/*": [
+        "./src/data/*"
+      ],
     }
   }
 }

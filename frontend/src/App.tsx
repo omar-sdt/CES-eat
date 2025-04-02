@@ -7,6 +7,7 @@ import { AuthProvider, useAuth } from "./context/auth-context"
 import { JSX } from "react"
 import Navbar from "@/components/navbar"
 import { CartProvider } from "./context/cart-context"
+import { FilterProvider } from "./context/filter-context"
 
 function PrivateRoute({ element }: { element: JSX.Element }) {
   const { accessToken } = useAuth();
@@ -22,22 +23,24 @@ function App() {
       <BrowserRouter>
         <AuthProvider>
           <CartProvider>
-            <Navbar />
-            <Routes>
-              {/* Routes publiques */}
-              <Route path="*" element={<Navigate to="/home" />} />
-              <Route path="/" element={<Navigate to="/home" />} />
-              <Route path="/home" element={<Home />} />
-              <Route path="/orders" element={<PrivateRoute element={<Orders />} />} />
-              <Route path="/login" element={<Login />} />
+            <FilterProvider>
+              <Navbar />
+              <Routes>
+                {/* Routes publiques */}
+                <Route path="*" element={<Navigate to="/home" />} />
+                <Route path="/" element={<Navigate to="/home" />} />
+                <Route path="/home" element={<Home />} />
+                <Route path="/orders" element={<PrivateRoute element={<Orders />} />} />
+                <Route path="/login" element={<Login />} />
 
-              {/* Routes privées */}
-              <Route path="/profile" element={<PrivateRoute element={<Profile />} />} />
-              <Route path="/orders" element={<PrivateRoute element={<Orders />} />} />
-            </Routes>
+                {/* Routes privées */}
+                <Route path="/profile" element={<PrivateRoute element={<Profile />} />} />
+                <Route path="/orders" element={<PrivateRoute element={<Orders />} />} />
+              </Routes>
+            </FilterProvider>
           </CartProvider>
         </AuthProvider>
-      </BrowserRouter>
+      </BrowserRouter >
 
     </>
   )
