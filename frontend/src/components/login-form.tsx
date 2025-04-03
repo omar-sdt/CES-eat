@@ -39,7 +39,7 @@ export function LoginForm({
         try {
             await dispatch(loginUser(data)).unwrap();
 
-            toast.success('Tu est connecté !');
+            toast.success('Tu es connecté !');
             navigate("/home");
         } catch (err: any) {
             // err est typé avec ton RegisterUserError

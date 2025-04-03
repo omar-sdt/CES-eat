@@ -26,7 +26,7 @@ export const registerUser = createAsyncThunk<
             };
 
             const response = await axios.post(
-                'http://localhost:3000/auth/register',
+                'http://localhost:8080/register',
                 { name, email, password },
                 config
             );
@@ -73,7 +73,7 @@ export const loginUser = createAsyncThunk<
     async ({ email, password }, { rejectWithValue }) => {
         try {
             const response = await axios.post(
-                "http://localhost:3000/auth/login",
+                "http://localhost:8080/login",
                 { email, password },
                 { headers: { "Content-Type": "application/json" } }
             );

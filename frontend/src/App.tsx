@@ -16,6 +16,8 @@ import {RootState} from "@/store.ts";
 function PrivateRoute({ element }: { element: JSX.Element }) {
   const { userToken } = useSelector((state: RootState) => state.auth);
 
+  console.log("userToken", userToken);
+
   // Si l'utilisateur n'est pas connecté, redirige vers la page de login
   return userToken ? element : <Navigate to="/login" />;
 }

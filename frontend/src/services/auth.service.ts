@@ -5,7 +5,7 @@ export const authApi = createApi({
     reducerPath: "authApi",
     tagTypes: ['user'],
     baseQuery: fetchBaseQuery({
-        baseUrl: 'http://127.0.0.1:3000/',
+        baseUrl: 'http://127.0.0.1:8080/',
         prepareHeaders: (headers) => {
             const token = localStorage.getItem("accessToken");
             if (token) {
@@ -18,7 +18,7 @@ export const authApi = createApi({
     endpoints: (builder) => ({
         getUserDetails: builder.query<User, void>({
             query: () => ({
-                url: 'auth/user',
+                url: 'user',
                 method: 'GET',
             }),
             providesTags: ['user'],

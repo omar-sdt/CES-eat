@@ -51,10 +51,15 @@ export const authenticateController = async (req: Request, res: Response) => {
         return;
     }
 
+    console.log("authenticate", authHeader);
+
     const token = authHeader.split(" ")[1];
 
     try {
         const payload = jwt.verify(token, process.env.ACCESS_JWT_KEY!);
+
+        res.setHeader("Authorization", authHeader);
+
         // Pas besoin de payload dans la réponse, juste status
         res.sendStatus(StatusCodes.OK);
     } catch (e) {
@@ -64,6 +69,8 @@ export const authenticateController = async (req: Request, res: Response) => {
 
 export const getUserController = async (req: Request, res: Response) => {
     const authHeader = req.headers.authorization;
+
+    console.log("authHeader", authHeader);
 
     if (!authHeader?.startsWith("Bearer ")) {
         res.sendStatus(StatusCodes.UNAUTHORIZED);
