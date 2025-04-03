@@ -14,9 +14,13 @@ import {
 } from "@/components/ui/drawer"
 import { X, ShoppingCart } from "lucide-react"
 import { Link } from "react-router-dom"
+import { useCart } from "@/context/cart-context"
 
 const Panier = () => {
-    const [isEmpty, setIsEmpty] = useState(true)
+    const [isEmpty, setIsEmpty] = useState(true);
+
+    const { cart } = useCart();
+    const totalItems = cart.reduce((total, item) => total + item.quantity, 0);
 
     return (
         <>
@@ -24,7 +28,7 @@ const Panier = () => {
                 <DrawerTrigger asChild>
                     <Button variant="default" size="navbar" effect="shineHover">
                         <ShoppingCart />
-                        Panier • 0
+                        Panier • {totalItems}
                     </Button>
                 </DrawerTrigger>
                 {isEmpty ? (

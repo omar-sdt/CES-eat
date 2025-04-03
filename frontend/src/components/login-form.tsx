@@ -13,7 +13,7 @@ import {
 import { Input } from "@/components/ui/input"
 import { Label } from "@/components/ui/label"
 import { Link } from "react-router-dom"
-import { useAuth } from "@/context/AuthContext"
+import { useAuth } from "@/context/auth-context"
 import { useState } from "react"
 
 export function LoginForm({
@@ -24,7 +24,7 @@ export function LoginForm({
     const [email, setEmail] = useState("");
     const [password, setPassword] = useState("");
 
-    const handleSubmit = async (e) => {
+    const handleSubmit = async (e: { preventDefault: () => void }) => {
         e.preventDefault();
         await login(email, password);
     };
@@ -57,7 +57,7 @@ export function LoginForm({
                                     <Label htmlFor="password">Mot de passe</Label>
                                     <a
                                         href="#"
-                                        className="text-accent ml-auto inline-block text-sm underline-offset-4 hover:underline"
+                                        className="text-green-primary ml-auto inline-block text-sm underline-offset-4 hover:underline"
                                     >
                                         Mot de passe oublié?
                                     </a>

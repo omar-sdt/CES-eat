@@ -9,6 +9,7 @@
     }
   ],
   "compilerOptions": {
+    "strict": true,
     "baseUrl": ".",
     "paths": {
       "@/*": [
@@ -34,6 +35,9 @@
       ],
       "@stores/*": [
         "./src/stores/*"
+      ],
+      "@data/*": [
+        "./src/data/*"
       ],
     }
   }
