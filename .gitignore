@@ -1,0 +1,4 @@
+node_modules
+auth/.env
+.idea
+.DS_Store
