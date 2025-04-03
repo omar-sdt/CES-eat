@@ -10,6 +10,7 @@ export const restaurantSchema = z.object({
     description: z.string(), // Description du restaurant
     phone: z.string(), // Numéro de téléphone du restaurant
     tag: z.array(z.string()).optional(),
+    horaires: z.string(), // Horaires d'ouverture du restaurant
 });
 
 export type Restaurant = z.infer<typeof restaurantSchema>;
