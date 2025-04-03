@@ -57,3 +57,26 @@ export const authenticateController = async (req: Request, res: Response) => {
         res.sendStatus(StatusCodes.UNAUTHORIZED);
     }
 };
+
+export const getUserController = async (req: Request, res: Response) => {
+    const authHeader = req.headers.authorization;
+
+    if (!authHeader?.startsWith("Bearer ")) {
+        res.sendStatus(StatusCodes.UNAUTHORIZED);
+        return;
+    }
+
+    const token = authHeader.split(" ")[1];
+
+    try {
+        const payload = jwt.verify(token, process.env.ACCESS_JWT_KEY!);
+        const user = await prisma.user.findUnique({
+            where: {
+                email: (payload as any).email
+            }
+        });
+        res.status(StatusCodes.OK).json(user);
+    } catch (e) {
+        res.sendStatus(StatusCodes.UNAUTHORIZED);
+    }
+}
