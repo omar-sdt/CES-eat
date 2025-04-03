@@ -36,7 +36,11 @@ export const loginController = async (req: Request, res: Response) => {
     // Create a token
     const accessToken = jwt.sign({ email: user.email, exp: Math.floor(Date.now() / 1000) + 60 * 60 }, process.env.ACCESS_JWT_KEY);
 
-    res.status(StatusCodes.OK).json({ accessToken });
+    // Return access token and user
+    res.status(StatusCodes.OK).json({
+        accessToken,
+        user,
+    });
 };
 
 export const authenticateController = async (req: Request, res: Response) => {
