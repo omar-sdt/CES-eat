@@ -18,7 +18,6 @@ const Restaurant = () => {
         const { id, name, src, alt } = restaurant;
         return (
             <div className="container mx-auto p-4">
-                <h2 className="text-xl font-bold mb-4">Restaurant #{id}</h2>
                 <h1 className="text-2xl font-bold">{name}</h1>
                 <img src={src} alt={alt} className="w-50 h-auto rounded-lg shadow-lg" />
 

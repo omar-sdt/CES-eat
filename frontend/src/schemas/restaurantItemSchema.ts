@@ -1,15 +1,13 @@
 import { z } from 'zod';
 
-export const restaurantSchema = z.object({
+export const restaurantItemSchema = z.object({
     id: z.string(),
     name: z.string(),
     address: z.string(),
     rating: z.number().min(0).max(5), // La note est un nombre entre 0 et 5
     src: z.string(), // L'URL de l'image
     alt: z.string(), // Texte alternatif pour l'image
-    description: z.string(), // Description du restaurant
-    phone: z.string(), // Numéro de téléphone du restaurant
-    tag: z.array(z.string()).optional(),
+    tag: z.array(z.string()).optional(), // Liste de tags (facultatif)
 });
 
-export type Restaurant = z.infer<typeof restaurantSchema>;
+export type Restaurant = z.infer<typeof restaurantItemSchema>;

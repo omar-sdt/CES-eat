@@ -1,4 +1,4 @@
-import { restaurantSchema, Restaurant } from '@/schemas/restaurantSchema';
+import { restaurantItemSchema, Restaurant } from '@/schemas/restaurantItemSchema';
 import { Star } from 'lucide-react';
 import { Link } from 'react-router-dom';
 
@@ -7,7 +7,7 @@ type RestaurantItemProps = {
 };
 
 const RestaurantItem = ({ resto }: RestaurantItemProps) => {
-    const result = restaurantSchema.safeParse(resto);
+    const result = restaurantItemSchema.safeParse(resto);
 
     if (!result.success) {
         return <div>Erreur de données : {result.error.message}</div>;

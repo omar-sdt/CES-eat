@@ -1,7 +1,7 @@
 "use client";
 import { createContext, useContext, useState, ReactNode } from "react";
-import { Restaurant } from "@/schemas/restaurantSchema";
-import { restaurants } from '@/data/restaurants';
+import { Restaurant } from "@/schemas/restaurantItemSchema";
+import { restaurantItems } from '@/data/restaurantItems';
 
 // Définition du type pour le contexte
 interface FilterContextType {
@@ -23,10 +23,10 @@ export const FilterProvider = ({ children }: FilterProviderProps) => {
 
     // Filtrage des restaurants en fonction des tags sélectionné
     const filteredRestaurants = selectedFilter
-        ? restaurants.filter((restaurant) =>
+        ? restaurantItems.filter((restaurant) =>
             restaurant.tags.some((tag) => tag.toLowerCase() === selectedFilter?.toLowerCase())
         )
-        : restaurants;
+        : restaurantItems;
 
     return (
         <FilterContext.Provider value={{
