@@ -10,8 +10,8 @@ import { CartProvider } from "./context/cart-context"
 import { FilterProvider } from "./context/filter-context"
 import Register from "./pages/register"
 import Restaurant from "./pages/restaurant"
-import {useSelector} from "react-redux";
-import {RootState} from "@/store.ts";
+import { useSelector } from "react-redux";
+import { RootState } from "@/store.ts";
 
 function PrivateRoute({ element }: { element: JSX.Element }) {
   const { userToken } = useSelector((state: RootState) => state.auth);
