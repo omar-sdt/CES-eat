@@ -3,8 +3,8 @@ import { Button } from './ui/button';
 import Panier from './cart';
 import { CookingPot } from 'lucide-react';
 import { DropdownNavbar } from './drop-down-navbar';
-import {useSelector} from "react-redux";
-import {RootState} from "@/store.ts";
+import { useSelector } from "react-redux";
+import { RootState } from "@/store.ts";
 
 const Navbar = () => {
   const { userToken } = useSelector((state: RootState) => state.auth);

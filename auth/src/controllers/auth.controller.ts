@@ -1,8 +1,8 @@
 import { Request, Response } from "express";
 import bcrypt from "bcrypt";
 import jwt from "jsonwebtoken";
-import {StatusCodes} from "http-status-codes";
-import {userLoginSchema, userRegisterSchema} from "../schemas/user.schema";
+import { StatusCodes } from "http-status-codes";
+import { userLoginSchema, userRegisterSchema } from "../schemas/user.schema";
 import prisma from "../lib/prisma";
 
 export const registerController = async (req: Request, res: Response) => {

@@ -15,18 +15,20 @@ import {
   DropdownMenuTrigger,
 } from "@/components/ui/dropdown-menu"
 import { Link } from "react-router-dom"
-import {useDispatch} from "react-redux";
-import {logout} from "@/features/auth/auth.slice.ts";
+import { useDispatch } from "react-redux";
+import { logout } from "@/features/auth/auth.slice.ts";
+import { useGetUserDetailsQuery } from "@/services/auth.service";
 
 export function DropdownNavbar() {
   const dispatch = useDispatch();
+  const { data } = useGetUserDetailsQuery();
 
   return (
     <DropdownMenu>
       <DropdownMenuTrigger asChild>
         <Button variant="secondary" size="navbar" effect="shineHover" className="">
           <User />
-          Mon compte
+          {data?.name || "Mon compte"}
         </Button>
       </DropdownMenuTrigger>
       <DropdownMenuContent className="w-56">
