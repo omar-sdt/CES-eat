@@ -23,10 +23,17 @@ export function SecurityForm({
   const [confirmPassword, setConfirmPassword] = useState("Mot de passe")
   const [showNewPassword, setShowNewPassword] = useState(false)
   const [showConfirmPassword, setShowConfirmPassword] = useState(false)
+  const [isPasswordMatch, setIsPasswordMatch] = useState(true)
 
   const getInputType = (value: string, isVisible: boolean) => {
     if (value === "Mot de passe") return "text"
     return isVisible ? "text" : "password"
+  }
+
+  const handleConfirmPasswordChange = (e: React.ChangeEvent<HTMLInputElement>) => {
+    const value = e.target.value
+    setConfirmPassword(value)
+    setIsPasswordMatch(value === newPassword && value !== "Mot de passe")
   }
 
   return (
@@ -35,7 +42,7 @@ export function SecurityForm({
         <CardHeader className="text-center">
           <CardTitle className="text-2xl">Sécurité</CardTitle>
           <CardDescription>
-            Votre mot de passe doit comporter au moins 8 caractères, dont au moins un chiffre et un caractère non numérique :
+            Votre mot de passe doit comporter au moins 8 caractères, dont au moins un chiffre et un caractère non numérique :
           </CardDescription>
         </CardHeader>
         <CardContent className="flex flex-col gap-6">
@@ -66,16 +73,19 @@ export function SecurityForm({
 
           <div className="grid gap-2 relative">
             <Label htmlFor="confirmPassword">Confirmation du nouveau mot de passe</Label>
+            {!isPasswordMatch && confirmPassword !== "Mot de passe" && (
+              <p className="text-red-600 text-xs mt-1">Les mots de passe ne correspondent pas.</p>
+            )}
             <div className="relative">
               <Input
                 id="confirmPassword"
                 type={getInputType(confirmPassword, showConfirmPassword)}
                 value={confirmPassword}
-                onChange={(e) => setConfirmPassword(e.target.value)}
+                onChange={handleConfirmPasswordChange}
                 onFocus={() => {
                   if (confirmPassword === "Mot de passe") setConfirmPassword("")
                 }}
-                className="pr-10"
+                className={`pr-10 ${!isPasswordMatch ? 'border-red-600' : ''}`}
               />
               <div className="absolute right-3 inset-y-0 flex items-center">
                 <button

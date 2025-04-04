@@ -11,14 +11,12 @@ import { Label } from "@/components/ui/label"
 import { Input } from "@/components/ui/input"
 import { Button } from "@/components/ui/button"
 import { cn } from "@/lib/utils"
-import { useAuth } from "@/context/auth-context"
 import { useState } from "react"
 
 export function MyProfileForm({
   className,
   ...props
 }: React.ComponentPropsWithoutRef<"div">) {
-  const { logout } = useAuth()
 
   const [firstName, setFirstName] = useState("Liberty")
   const [lastName, setLastName] = useState("Sabatier")
