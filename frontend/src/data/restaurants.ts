@@ -6,7 +6,7 @@ export const restaurants = [
         "rating": 4.5,
         "src": "/restaurant/kfc.svg",
         "alt": "KFC Quetigny",
-        "tag": ["halal", "poulet", "frites", "hamburger"],
+        "tags": ["halal", "poulet", "frites", "hamburger"],
         "description": "Fast-food spécialisé dans le poulet frit.",
         "phone": "0380102030",
         "horaires": [
@@ -26,10 +26,16 @@ export const restaurants = [
         "rating": 3.8,
         "src": "/restaurant/kfc.svg",
         "alt": "La Pizzeria",
-        "tag": ["pizza", "salade"],
+        "tags": ["pizza", "salade"],
         "description": "Pizzas artisanales cuites au feu de bois.",
         "phone": "0381223344",
-        "horaires": "12h - 22h",
+        "horaires": [
+            "Lundi - Vendredi: 11h - 23h",
+            "Samedi - Dimanche: 12h - 23h",
+            "Fermé le 1er janvier",
+            "Fermé le 25 décembre",
+            "Fermé le 14 juillet"
+        ],
         "latitude": 45.7676,
         "longitude": 4.8345
     },
@@ -40,10 +46,16 @@ export const restaurants = [
         "rating": 4.2,
         "src": "/restaurant/kfc.svg",
         "alt": "Sushi Bar",
-        "tag": ["sushi", "poisson", "asiatique"],
+        "tags": ["sushi", "poisson", "asiatique"],
         "description": "Sushis et sashimis frais du jour.",
         "phone": "0382456789",
-        "horaires": "18h - 23h",
+        "horaires": [
+            "Lundi - Vendredi: 11h - 23h",
+            "Samedi - Dimanche: 12h - 23h",
+            "Fermé le 1er janvier",
+            "Fermé le 25 décembre",
+            "Fermé le 14 juillet"
+        ],
         "latitude": 48.8698,
         "longitude": 2.3079
     },
@@ -54,10 +66,16 @@ export const restaurants = [
         "rating": 4.7,
         "src": "/restaurant/kfc.svg",
         "alt": "Burger Town",
-        "tag": ["hamburger", "frites", "viande"],
+        "tags": ["hamburger", "frites", "viande"],
         "description": "Burgers gourmands avec des ingrédients locaux.",
         "phone": "0383567890",
-        "horaires": "11h - 22h",
+        "horaires": [
+            "Lundi - Vendredi: 11h - 23h",
+            "Samedi - Dimanche: 12h - 23h",
+            "Fermé le 1er janvier",
+            "Fermé le 25 décembre",
+            "Fermé le 14 juillet"
+        ],
         "latitude": 43.2706,
         "longitude": 5.4003
     },
@@ -68,10 +86,16 @@ export const restaurants = [
         "rating": 4.1,
         "src": "/restaurant/kfc.svg",
         "alt": "Tacos Avenue",
-        "tag": ["halal", "viande"],
+        "tags": ["halal", "viande"],
         "description": "Tacos faits maison avec des sauces uniques.",
         "phone": "0384678901",
-        "horaires": "12h - 23h",
+        "horaires": [
+            "Lundi - Vendredi: 11h - 23h",
+            "Samedi - Dimanche: 12h - 23h",
+            "Fermé le 1er janvier",
+            "Fermé le 25 décembre",
+            "Fermé le 14 juillet"
+        ],
         "latitude": 43.6045,
         "longitude": 1.4442
     },
@@ -82,10 +106,16 @@ export const restaurants = [
         "rating": 4.9,
         "src": "/restaurant/kfc.svg",
         "alt": "Le Gourmet",
-        "tag": ["viande", "poisson", "salade"],
+        "tags": ["viande", "poisson", "salade"],
         "description": "Restaurant gastronomique avec des plats raffinés.",
         "phone": "0385123456",
-        "horaires": "19h - 23h",
+        "horaires": [
+            "Lundi - Vendredi: 11h - 23h",
+            "Samedi - Dimanche: 12h - 23h",
+            "Fermé le 1er janvier",
+            "Fermé le 25 décembre",
+            "Fermé le 14 juillet"
+        ],
         "latitude": 44.8378,
         "longitude": -0.5792
     },
@@ -96,10 +126,16 @@ export const restaurants = [
         "rating": 4.3,
         "src": "/restaurant/kfc.svg",
         "alt": "Bistrot Parisien",
-        "tag": ["viande", "salade"],
+        "tags": ["viande", "salade"],
         "description": "Cuisine traditionnelle française dans un cadre chic.",
         "phone": "0386987654",
-        "horaires": "12h - 22h",
+        "horaires": [
+            "Lundi - Vendredi: 11h - 23h",
+            "Samedi - Dimanche: 12h - 23h",
+            "Fermé le 1er janvier",
+            "Fermé le 25 décembre",
+            "Fermé le 14 juillet"
+        ],
         "latitude": 48.8556,
         "longitude": 2.3608
     },
@@ -110,10 +146,16 @@ export const restaurants = [
         "rating": 4.5,
         "src": "/restaurant/kfc.svg",
         "alt": "Chez Luigi",
-        "tag": ["pizza", "pâtes"],
+        "tags": ["pizza", "pâtes"],
         "description": "Restaurant italien avec des spécialités maison.",
         "phone": "0387654321",
-        "horaires": "12h - 22h",
+        "horaires": [
+            "Lundi - Vendredi: 11h - 23h",
+            "Samedi - Dimanche: 12h - 23h",
+            "Fermé le 1er janvier",
+            "Fermé le 25 décembre",
+            "Fermé le 14 juillet"
+        ],
         "latitude": 43.7009,
         "longitude": 7.2684
     },
@@ -124,10 +166,16 @@ export const restaurants = [
         "rating": 4.6,
         "src": "/restaurant/kfc.svg",
         "alt": "Vegan Spot",
-        "tag": ["végétarien", "salade"],
+        "tags": ["végétarien", "salade"],
         "description": "Cuisine 100% végétale et bio.",
         "phone": "0388234567",
-        "horaires": "11h - 21h",
+        "horaires": [
+            "Lundi - Vendredi: 11h - 23h",
+            "Samedi - Dimanche: 12h - 23h",
+            "Fermé le 1er janvier",
+            "Fermé le 25 décembre",
+            "Fermé le 14 juillet"
+        ],
         "latitude": 45.7699,
         "longitude": 4.8529
     },
@@ -138,10 +186,16 @@ export const restaurants = [
         "rating": 4.2,
         "src": "/restaurant/kfc.svg",
         "alt": "Le Petit Boulanger",
-        "tag": ["petit-dejeune"],
+        "tags": ["petit-dejeune"],
         "description": "Boulangerie artisanale avec des produits frais.",
         "phone": "0389987654",
-        "horaires": "06h - 19h",
+        "horaires": [
+            "Lundi - Vendredi: 11h - 23h",
+            "Samedi - Dimanche: 12h - 23h",
+            "Fermé le 1er janvier",
+            "Fermé le 25 décembre",
+            "Fermé le 14 juillet"
+        ],
         "latitude": 48.8686,
         "longitude": 2.3412
     },
@@ -152,10 +206,16 @@ export const restaurants = [
         "rating": 4.0,
         "src": "/restaurant/kfc.svg",
         "alt": "Fish & Chips",
-        "tag": ["poisson", "frites"],
+        "tags": ["poisson", "frites"],
         "description": "Poisson frais pané et frites maison.",
         "phone": "0390123456",
-        "horaires": "12h - 22h",
+        "horaires": [
+            "Lundi - Vendredi: 11h - 23h",
+            "Samedi - Dimanche: 12h - 23h",
+            "Fermé le 1er janvier",
+            "Fermé le 25 décembre",
+            "Fermé le 14 juillet"
+        ],
         "latitude": 43.2965,
         "longitude": 5.3698
     },
@@ -166,10 +226,16 @@ export const restaurants = [
         "rating": 4.7,
         "src": "/restaurant/kfc.svg",
         "alt": "Buffet Royal",
-        "tag": ["viande", "poisson", "sushi", "salade"],
+        "tags": ["viande", "poisson", "sushi", "salade"],
         "description": "Buffet à volonté avec une large sélection de plats.",
         "phone": "0391456789",
-        "horaires": "12h - 23h",
+        "horaires": [
+            "Lundi - Vendredi: 11h - 23h",
+            "Samedi - Dimanche: 12h - 23h",
+            "Fermé le 1er janvier",
+            "Fermé le 25 décembre",
+            "Fermé le 14 juillet"
+        ],
         "latitude": 43.6109,
         "longitude": 3.8767
     },
@@ -180,10 +246,16 @@ export const restaurants = [
         "rating": 4.3,
         "src": "/restaurant/kfc.svg",
         "alt": "Le Bistro Chic",
-        "tag": ["viande", "salade"],
+        "tags": ["viande", "salade"],
         "description": "Bistro moderne avec une cuisine française revisitée.",
         "phone": "0392345678",
-        "horaires": "12h - 22h",
+        "horaires": [
+            "Lundi - Vendredi: 11h - 23h",
+            "Samedi - Dimanche: 12h - 23h",
+            "Fermé le 1er janvier",
+            "Fermé le 25 décembre",
+            "Fermé le 14 juillet"
+        ],
         "latitude": 48.8827,
         "longitude": 2.3226
     },
@@ -194,10 +266,16 @@ export const restaurants = [
         "rating": 4.8,
         "src": "/restaurant/kfc.svg",
         "alt": "Chez Mamie",
-        "tag": ["viande", "petit-dejeune"],
+        "tags": ["viande", "petit-dejeune"],
         "description": "Cuisine familiale avec des recettes de grand-mère.",
         "phone": "0393456789",
-        "horaires": "08h - 20h",
+        "horaires": [
+            "Lundi - Vendredi: 11h - 23h",
+            "Samedi - Dimanche: 12h - 23h",
+            "Fermé le 1er janvier",
+            "Fermé le 25 décembre",
+            "Fermé le 14 juillet"
+        ],
         "latitude": 43.6043,
         "longitude": 1.4437
     },
@@ -208,10 +286,16 @@ export const restaurants = [
         "rating": 4.5,
         "src": "/restaurant/kfc.svg",
         "alt": "La Cantine Bio",
-        "tag": ["végétarien", "salade"],
+        "tags": ["végétarien", "salade"],
         "description": "Restaurant bio avec des plats sains et équilibrés.",
         "phone": "0394567890",
-        "horaires": "11h - 21h",
+        "horaires": [
+            "Lundi - Vendredi: 11h - 23h",
+            "Samedi - Dimanche: 12h - 23h",
+            "Fermé le 1er janvier",
+            "Fermé le 25 décembre",
+            "Fermé le 14 juillet"
+        ],
         "latitude": 45.7509,
         "longitude": 4.8284
     },
@@ -222,10 +306,16 @@ export const restaurants = [
         "rating": 4.6,
         "src": "/restaurant/kfc.svg",
         "alt": "Steakhouse 22",
-        "tag": ["viande"],
+        "tags": ["viande"],
         "description": "Spécialiste des viandes grillées et des steaks.",
         "phone": "0395678901",
-        "horaires": "12h - 23h",
+        "horaires": [
+            "Lundi - Vendredi: 11h - 23h",
+            "Samedi - Dimanche: 12h - 23h",
+            "Fermé le 1er janvier",
+            "Fermé le 25 décembre",
+            "Fermé le 14 juillet"
+        ],
         "latitude": 48.8638,
         "longitude": 2.2769
     },
@@ -236,10 +326,16 @@ export const restaurants = [
         "rating": 4.7,
         "src": "/restaurant/kfc.svg",
         "alt": "Ramen Tokyo",
-        "tag": ["asiatique", "soupe"],
+        "tags": ["asiatique", "soupe"],
         "description": "Ramen authentiques avec des bouillons faits maison.",
         "phone": "0396789012",
-        "horaires": "11h - 22h",
+        "horaires": [
+            "Lundi - Vendredi: 11h - 23h",
+            "Samedi - Dimanche: 12h - 23h",
+            "Fermé le 1er janvier",
+            "Fermé le 25 décembre",
+            "Fermé le 14 juillet"
+        ],
         "latitude": 48.8412,
         "longitude": 2.2986
     },
@@ -250,10 +346,16 @@ export const restaurants = [
         "rating": 4.3,
         "src": "/restaurant/kfc.svg",
         "alt": "Curry Express",
-        "tag": ["asiatique", "viande"],
+        "tags": ["asiatique", "viande"],
         "description": "Cuisine indienne rapide avec des currys savoureux.",
         "phone": "0397890123",
-        "horaires": "12h - 23h",
+        "horaires": [
+            "Lundi - Vendredi: 11h - 23h",
+            "Samedi - Dimanche: 12h - 23h",
+            "Fermé le 1er janvier",
+            "Fermé le 25 décembre",
+            "Fermé le 14 juillet"
+        ],
         "latitude": 43.2871,
         "longitude": 5.3796
     },
@@ -264,10 +366,16 @@ export const restaurants = [
         "rating": 4.5,
         "src": "/restaurant/kfc.svg",
         "alt": "Pizza Napoli",
-        "tag": ["pizza", "salade"],
+        "tags": ["pizza", "salade"],
         "description": "Pizzas napolitaines avec des ingrédients frais.",
         "phone": "0398901234",
-        "horaires": "12h - 22h",
+        "horaires": [
+            "Lundi - Vendredi: 11h - 23h",
+            "Samedi - Dimanche: 12h - 23h",
+            "Fermé le 1er janvier",
+            "Fermé le 25 décembre",
+            "Fermé le 14 juillet"
+        ],
         "latitude": 43.2878,
         "longitude": 5.3791
     },
@@ -278,10 +386,16 @@ export const restaurants = [
         "rating": 4.1,
         "src": "/restaurant/kfc.svg",
         "alt": "Grill & Chill",
-        "tag": ["viande", "frites"],
+        "tags": ["viande", "frites"],
         "description": "Grillades et frites maison dans une ambiance décontractée.",
         "phone": "0399012345",
-        "horaires": "12h - 23h",
+        "horaires": [
+            "Lundi - Vendredi: 11h - 23h",
+            "Samedi - Dimanche: 12h - 23h",
+            "Fermé le 1er janvier",
+            "Fermé le 25 décembre",
+            "Fermé le 14 juillet"
+        ],
         "latitude": 45.7594,
         "longitude": 4.8534
     },
@@ -292,10 +406,16 @@ export const restaurants = [
         "rating": 4.8,
         "src": "/restaurant/kfc.svg",
         "alt": "Le Sushi Lounge",
-        "tag": ["sushi", "poisson"],
+        "tags": ["sushi", "poisson"],
         "description": "Sushis haut de gamme dans un cadre élégant.",
         "phone": "0380123456",
-        "horaires": "18h - 23h",
+        "horaires": [
+            "Lundi - Vendredi: 11h - 23h",
+            "Samedi - Dimanche: 12h - 23h",
+            "Fermé le 1er janvier",
+            "Fermé le 25 décembre",
+            "Fermé le 14 juillet"
+        ],
         "latitude": 48.8606,
         "longitude": 2.3417
     },
@@ -306,10 +426,16 @@ export const restaurants = [
         "rating": 4.4,
         "src": "/restaurant/kfc.svg",
         "alt": "Wok & Roll",
-        "tag": ["asiatique", "sushi"],
+        "tags": ["asiatique", "sushi"],
         "description": "Cuisine asiatique avec des woks et des sushis.",
         "phone": "0381234567",
-        "horaires": "12h - 22h",
+        "horaires": [
+            "Lundi - Vendredi: 11h - 23h",
+            "Samedi - Dimanche: 12h - 23h",
+            "Fermé le 1er janvier",
+            "Fermé le 25 décembre",
+            "Fermé le 14 juillet"
+        ],
         "latitude": 45.7502,
         "longitude": 4.8285
     },
@@ -320,10 +446,16 @@ export const restaurants = [
         "rating": 4.2,
         "src": "/restaurant/kfc.svg",
         "alt": "Chez Pierre",
-        "tag": ["viande", "salade"],
+        "tags": ["viande", "salade"],
         "description": "Cuisine française traditionnelle avec des plats du jour.",
         "phone": "0382345678",
-        "horaires": "12h - 22h",
+        "horaires": [
+            "Lundi - Vendredi: 11h - 23h",
+            "Samedi - Dimanche: 12h - 23h",
+            "Fermé le 1er janvier",
+            "Fermé le 25 décembre",
+            "Fermé le 14 juillet"
+        ],
         "latitude": 43.7001,
         "longitude": 7.2666
     },
@@ -334,10 +466,16 @@ export const restaurants = [
         "rating": 4.6,
         "src": "/restaurant/kfc.svg",
         "alt": "Le Coin Thaï",
-        "tag": ["asiatique", "poulet"],
+        "tags": ["asiatique", "poulet"],
         "description": "Cuisine thaïlandaise avec des plats épicés.",
         "phone": "0383456789",
-        "horaires": "12h - 23h",
+        "horaires": [
+            "Lundi - Vendredi: 11h - 23h",
+            "Samedi - Dimanche: 12h - 23h",
+            "Fermé le 1er janvier",
+            "Fermé le 25 décembre",
+            "Fermé le 14 juillet"
+        ],
         "latitude": 48.8765,
         "longitude": 2.3382
     },
@@ -348,10 +486,16 @@ export const restaurants = [
         "rating": 4.9,
         "src": "/restaurant/kfc.svg",
         "alt": "Taverne Médiévale",
-        "tag": ["viande", "salade"],
+        "tags": ["viande", "salade"],
         "description": "Ambiance médiévale avec des plats rustiques.",
         "phone": "0384567890",
-        "horaires": "12h - 22h",
+        "horaires": [
+            "Lundi - Vendredi: 11h - 23h",
+            "Samedi - Dimanche: 12h - 23h",
+            "Fermé le 1er janvier",
+            "Fermé le 25 décembre",
+            "Fermé le 14 juillet"
+        ],
         "latitude": 47.2184,
         "longitude": -1.5536
     },
@@ -362,10 +506,16 @@ export const restaurants = [
         "rating": 4.2,
         "src": "/restaurant/kfc.svg",
         "alt": "Coffee & Cake",
-        "tag": ["cafe", "petit-dejeune"],
+        "tags": ["cafe", "petit-dejeune"],
         "description": "Café avec des gâteaux faits maison.",
         "phone": "0385678901",
-        "horaires": "08h - 20h",
+        "horaires": [
+            "Lundi - Vendredi: 11h - 23h",
+            "Samedi - Dimanche: 12h - 23h",
+            "Fermé le 1er janvier",
+            "Fermé le 25 décembre",
+            "Fermé le 14 juillet"
+        ],
         "latitude": 48.8721,
         "longitude": 2.3601
     }

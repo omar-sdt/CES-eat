@@ -9,8 +9,8 @@ export const restaurantSchema = z.object({
     alt: z.string(), // Texte alternatif pour l'image
     description: z.string(), // Description du restaurant
     phone: z.string(), // Numéro de téléphone du restaurant
-    tag: z.array(z.string()).optional(),
-    horaires: z.string(), // Horaires d'ouverture du restaurant
+    tags: z.array(z.string()).optional(),
+    horaires: z.array(z.string()).optional(),
 });
 
 export type Restaurant = z.infer<typeof restaurantSchema>;

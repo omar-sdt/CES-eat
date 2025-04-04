@@ -65,9 +65,12 @@ const Restaurant = () => {
                                 <span>Horaires d'ouverture</span>
                             </h2>
                             <p className="text-sm text-gray-600">
-                                {(typeof horaires === "string" ? horaires.split("\n") : horaires).map((line, index) => (
-                                    <span key={index} className="block">{line}</span>
-                                ))}
+                                {horaires.length > 0 ? horaires.map((horaire, index) => (
+                                    <span key={index} className="flex flex-row gap-1 items-center">
+                                        <span>{horaire}</span>
+                                        {index < horaires.length - 1}
+                                    </span>
+                                )) : "Non renseigné"}
                             </p>
                         </div>
                     </div>
@@ -113,7 +116,7 @@ const Restaurant = () => {
                                     <h2 className="text-xl font-bold mb-4">{section.category.toUpperCase()}</h2>
                                     <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
                                         {section.items.map((item, idx) => (
-                                            <MenuItem key={idx} menu={item} />
+                                            <MenuItem key={idx} menu={{ ...item, restaurantId: restaurant.id }} restaurantId={restaurant.id} />
                                         ))}
                                     </div>
                                 </div>

@@ -15,6 +15,8 @@ import {
     TooltipTrigger,
 } from "@/components/ui/tooltip";
 import { Menu } from "@/schemas/menuItemSchema";
+import { useCart } from "@/context/cart-context";
+import { DialogDescription, DialogTitle } from "@radix-ui/react-dialog";
 
 type SelectionState = {
     size?: {
@@ -31,10 +33,12 @@ type SelectionState = {
     };
 };
 
-export function DialogChooseMenu({ menu }: { menu: Menu }) {
+export function DialogChooseMenu({ menu, restaurantId }: { menu: Menu; restaurantId: string }) {
     const [currentStep, setCurrentStep] = useState<"size" | "accompaniment" | "drink" | "summary">("size");
     const [selection, setSelection] = useState<SelectionState>({});
     const [quantity, setQuantity] = useState(1);
+
+    const { addToCart } = useCart();
 
     const handleSelectOption = (type: keyof SelectionState, option: { name: string; price: number }) => {
         setSelection(prev => ({ ...prev, [type]: option }));
@@ -52,8 +56,15 @@ export function DialogChooseMenu({ menu }: { menu: Menu }) {
         return quantity * (menu.basePrice + sizePrice + accompanimentPrice + drinkPrice);
     };
 
+    const createId = () => {
+        //avec restaurantId, menuId, size, accompaniment, drink
+        return `${restaurantId}-${menu.id}-${selection.size?.name}-${selection.accompaniment?.name}-${selection.drink?.name}`;
+    }
+
     return (
         <Dialog>
+            <DialogTitle></DialogTitle>
+            <DialogDescription></DialogDescription>
             <TooltipProvider>
                 <Tooltip>
                     <DialogTrigger asChild>
@@ -243,18 +254,20 @@ export function DialogChooseMenu({ menu }: { menu: Menu }) {
                     {currentStep === "summary" ? (
 
                         <DialogClose asChild onClick={() => {
-                            // Ici, vous pouvez ajouter la logique pour ajouter l'élément au panier
-                            // Par exemple, appeler une fonction pour ajouter l'élément au panier
-                            console.log("Ajouter au panier:", {
-                                ...menu,
-                                ...selection,
-                                quantity,
+                            addToCart({
+                                id: createId(),
+                                restaurantId: restaurantId,
+                                name: menu.name,
+                                price: menu.basePrice + (selection.size?.price || 0) + (selection.accompaniment?.price || 0) + (selection.drink?.price || 0),
+                                size: selection.size?.name || "",
+                                accompaniment: selection.accompaniment?.name || "",
+                                drink: selection.drink?.name || "",
+                                src: menu.image,
+                                quantity: quantity,
                             });
                         }}>
                             <Button type="button" className="w-full">
-
                                 En ajouter {quantity} à la commande • ({calculateTotal().toFixed(2)}€)
-
                             </Button>
                         </DialogClose>
                     ) : (

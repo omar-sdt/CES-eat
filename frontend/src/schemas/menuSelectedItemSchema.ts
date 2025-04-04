@@ -1,14 +1,15 @@
 import { z } from 'zod';
-import { restaurantItemSchema } from './restaurantItemSchema';
 
 export const menuSelectedItemSchema = z.object({
-    restaurant: restaurantItemSchema,
+    id: z.string(),
+    restaurantId: z.string(),
     name: z.string(),
     price: z.number().positive(),
     size: z.string(),
     accompaniment: z.string(),
     drink: z.string(),
-    quantity: z.number().positive(),
+    src: z.string(),
+    quantity: z.number().int().positive(),
 });
 
 export type MenuSelectedItem = z.infer<typeof menuSelectedItemSchema>;

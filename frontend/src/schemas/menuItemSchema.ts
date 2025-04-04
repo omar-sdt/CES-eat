@@ -11,7 +11,9 @@ const optionsSchema = z.object({
     drinks: z.array(optionSchema).optional()
 }).partial();
 
-export const menuItemSchema = z.object({
+export const menuSchema = z.object({
+    id: z.string(),
+    restaurantId: z.string(),
     name: z.string(),
     basePrice: z.number().positive(),
     description: z.string(),
@@ -21,10 +23,10 @@ export const menuItemSchema = z.object({
 
 export const menuCategorySchema = z.object({
     category: z.string(),
-    items: z.array(menuItemSchema)
+    items: z.array(menuSchema)
 });
 
-export type Menu = z.infer<typeof menuItemSchema>;
+export type Menu = z.infer<typeof menuSchema>;
 export type MenuCategory = z.infer<typeof menuCategorySchema>;
 export type MenuOptions = z.infer<typeof optionsSchema>;
 export type MenuOption = z.infer<typeof optionSchema>;
