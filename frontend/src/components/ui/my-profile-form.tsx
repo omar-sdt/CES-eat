@@ -66,8 +66,9 @@ export function MyProfileForm({
             />
           </div>
         </CardContent>
-        <CardFooter className="flex justify-start">
-            <Button variant="destructive">Supprimer le compte</Button>
+        <CardFooter className="flex justify-start gap-4">
+            <Button variant="destructive" effect="shineHover">Supprimer le compte</Button>
+            <Button variant="success" effect="shineHover">Sauvegarder les modifications</Button>
         </CardFooter>
       </Card>
     </div>
