@@ -6,21 +6,22 @@ import {
     Card,
     CardContent,
     CardDescription,
+    CardFooter,
     CardHeader,
     CardTitle,
 } from "@/components/ui/card"
 import { Input } from "@/components/ui/input"
 import { Label } from "@/components/ui/label"
 import {Link, useNavigate} from "react-router-dom"
-import {useDispatch} from "react-redux";
-import {AppDispatch} from "@/store.ts";
 import {useForm} from "react-hook-form";
-import {loginSchema, LoginUser} from "@/schemas/user.schema.ts";
 import {zodResolver} from "@hookform/resolvers/zod";
-import {loginUser} from "@/features/auth/auth.actions.ts";
+import {RegisterUser, registerUserSchema} from "@/schemas/user.schema.ts";
+import {useDispatch} from "react-redux";
+import {registerUser} from "@/features/auth/auth.actions.ts";
+import {AppDispatch} from "@/store.ts";
 import {toast} from "sonner";
 
-export function LoginForm({
+export function RegisterForm({
     className,
     ...props
 }: React.ComponentPropsWithoutRef<"div">) {
@@ -31,16 +32,16 @@ export function LoginForm({
         register,
         handleSubmit,
         formState: { errors },
-    } = useForm<LoginUser>({
-        resolver: zodResolver(loginSchema)
-    })
+    } = useForm<RegisterUser>({
+        resolver: zodResolver(registerUserSchema)
+    });
 
-    const onSubmit = async (data: LoginUser) => {
+    const onSubmit = async (data: RegisterUser) => {
         try {
-            await dispatch(loginUser(data)).unwrap();
+            const user = await dispatch(registerUser(data)).unwrap();
 
-            toast.success('Tu es connecté !');
-            navigate("/home");
+            toast.success(`Ton compte a été créé, ${user.name} !`);
+            navigate("/login");
         } catch (err: any) {
             // err est typé avec ton RegisterUserError
             console.log(err);
@@ -52,14 +53,26 @@ export function LoginForm({
         <div className={cn("flex flex-col gap-6", className)} {...props}>
             <Card>
                 <CardHeader>
-                    <CardTitle className="text-2xl">Connexion</CardTitle>
+                    <CardTitle className="text-2xl">Créer un compte</CardTitle>
                     <CardDescription>
-                        Entrer votre email ci-dessous pour vous connecter à votre compte.
+                        Entrer votre email ci-dessous pour créer un compte.
                     </CardDescription>
                 </CardHeader>
                 <CardContent>
                     <form onSubmit={handleSubmit(onSubmit)}>
                         <div className="flex flex-col gap-6">
+                            <div className="grid gap-2">
+                                <Label htmlFor="email">Nom</Label>
+                                <Input
+                                    id="name"
+                                    type="text"
+                                    placeholder="John Doe"
+                                    {...register("name")}
+                                />
+                                {errors.name && (
+                                    <p className="text-red-500 text-sm">{errors.name.message}</p>
+                                )}
+                            </div>
                             <div className="grid gap-2">
                                 <Label htmlFor="email">Adresse Email</Label>
                                 <Input
@@ -69,7 +82,7 @@ export function LoginForm({
                                     {...register("email")}
                                 />
                                 {errors.email && (
-                                    <p className="text-red-500">{errors.email.message}</p>
+                                    <p className="text-red-500 text-sm">{errors.email.message}</p>
                                 )}
                             </div>
                             <div className="grid gap-2">
@@ -89,21 +102,24 @@ export function LoginForm({
                                     {...register("password")}
                                 />
                                 {errors.password && (
-                                    <p className="text-red-500">{errors.password.message}</p>
+                                    <p className="text-red-500 text-sm">{errors.password.message}</p>
                                 )}
                             </div>
                             <Button type="submit" effect="shineHover" className="w-full">
-                                Se connecter
+                                Créer un compte
                             </Button>
                         </div>
                         <div className="mt-4 text-center text-sm">
-                            Pas encore de compte?{" "}
-                            <Link to="/register" className="underline underline-offset-4">
-                                Créer un compte
+                            Vous avez déjà un compte?{" "}
+                            <Link to="/login" className="underline underline-offset-4">
+                                Se connecter
                             </Link>
                         </div>
                     </form>
                 </CardContent>
+                <CardFooter>
+
+                </CardFooter>
             </Card>
         </div>
     )

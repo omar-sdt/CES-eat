@@ -3,19 +3,23 @@ import Home from "./pages/home"
 import Profile from "./pages/profile"
 import Orders from "./pages/orders"
 import Login from "./pages/login"
-import { AuthProvider, useAuth } from "./context/auth-context"
+import { AuthProvider } from "./context/auth-context"
 import { JSX } from "react"
 import Navbar from "@/components/navbar"
 import { CartProvider } from "./context/cart-context"
 import { FilterProvider } from "./context/filter-context"
 import Register from "./pages/register"
 import Restaurant from "./pages/restaurant"
+import {useSelector} from "react-redux";
+import {RootState} from "@/store.ts";
 
 function PrivateRoute({ element }: { element: JSX.Element }) {
-  const { accessToken } = useAuth();
+  const { userToken } = useSelector((state: RootState) => state.auth);
+
+  console.log("userToken", userToken);
 
   // Si l'utilisateur n'est pas connecté, redirige vers la page de login
-  return accessToken ? element : <Navigate to="/login" />;
+  return userToken ? element : <Navigate to="/login" />;
 }
 
 function App() {

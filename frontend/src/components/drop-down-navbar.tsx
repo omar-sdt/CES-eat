@@ -15,11 +15,11 @@ import {
   DropdownMenuTrigger,
 } from "@/components/ui/dropdown-menu"
 import { Link } from "react-router-dom"
-import { useAuth } from "@/context/auth-context"
+import {useDispatch} from "react-redux";
+import {logout} from "@/features/auth/auth.slice.ts";
 
 export function DropdownNavbar() {
-
-  const { logout } = useAuth()
+  const dispatch = useDispatch();
 
   return (
     <DropdownMenu>
@@ -48,7 +48,7 @@ export function DropdownNavbar() {
 
         </DropdownMenuGroup>
         <DropdownMenuSeparator />
-        <DropdownMenuItem onClick={logout}>
+        <DropdownMenuItem onClick={() => dispatch(logout())}>
           <LogOut />
           <span>Se déconnecter</span>
         </DropdownMenuItem>
