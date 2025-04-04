@@ -20,7 +20,7 @@ const Restaurant = () => {
         navigate("/home");
         return null;
     } else {
-        const { id, rating, horaires, phone, name, src, alt, latitude, longitude } = restaurant;
+        const { rating, horaires, phone, name, src, alt, latitude, longitude } = restaurant;
 
         const mapContainerStyle = {
             width: '100%',
