@@ -89,6 +89,7 @@
   --sidebar-ring: oklch(0.556 0 0);
 }
 
+
 @theme inline {
   --color-green-primary: var(--green-primary);
   --radius-sm: calc(var(--radius) - 4px);

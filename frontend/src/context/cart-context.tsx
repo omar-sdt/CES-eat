@@ -1,5 +1,5 @@
 "use client";
-import { createContext, useContext, useState, ReactNode } from "react";
+import { createContext, useContext, useState, ReactNode, useMemo } from "react";
 import { MenuSelectedItem } from "@/schemas/menuSelectedItemSchema";
 
 // Définition du contexte du panier avec MenuSelectedItem
@@ -9,6 +9,17 @@ interface CartContextType {
     removeFromCart: (restaurantId: string, itemName: string) => void;
     updateQuantity: (restaurantId: string, itemName: string, amount: number) => void;
     clearCart: () => void;
+    sousTotalPrice: number;
+    reductionPrice: number;
+    totalPrice: number;
+    totalItems: number;
+
+    deliveryPriorityPrice: number;
+    isDeliveryPriority: boolean;
+    setIsDeliveryPriority: (value: boolean) => void;
+
+    isPromotionApply: boolean;
+    setIsPromotionApply: (value: boolean) => void;
 }
 
 // Création du contexte avec une valeur par défaut
@@ -20,6 +31,11 @@ interface CartProviderProps {
 
 export const CartProvider = ({ children }: CartProviderProps) => {
     const [cart, setCart] = useState<MenuSelectedItem[]>([]);
+    const [isDeliveryPriority, setIsDeliveryPriority] = useState<boolean>(false);
+    const [isPromotionApply, setIsPromotionApply] = useState<boolean>(false);
+
+    const deliveryPriorityPrice = 5.39; // Prix de la livraison prioritaire
+
 
     const addToCart = (product: MenuSelectedItem) => {
         setCart((prevCart) => {
@@ -59,13 +75,53 @@ export const CartProvider = ({ children }: CartProviderProps) => {
         setCart([]);
     };
 
+    const sousTotalPrice = useMemo(() => {
+        return cart
+            .reduce((total, item) => total + item.price * item.quantity, 0)
+    }, [cart]);
+
+    const reductionPrice = useMemo(() => {
+        return sousTotalPrice * 0.1;
+    }
+        , [cart]);
+
+    const totalPrice = useMemo(() => {
+        let total = sousTotalPrice;
+        if (isPromotionApply) {
+            total -= reductionPrice;
+        }
+        if (isDeliveryPriority) {
+            total += deliveryPriorityPrice;
+        }
+        return total;
+    }
+        , [sousTotalPrice, isPromotionApply, reductionPrice, isDeliveryPriority, deliveryPriorityPrice]);
+
+    const totalItems = useMemo(() => {
+        console.log(cart);
+        return cart.reduce((total, item) => total + item.quantity, 0);
+    }
+        , [cart]);
+
+
+
     return (
         <CartContext.Provider value={{
             cart,
+            totalItems,
             addToCart,
             removeFromCart,
             updateQuantity,
-            clearCart
+            clearCart,
+            sousTotalPrice: Number(sousTotalPrice),
+            reductionPrice: Number(reductionPrice),
+            totalPrice: Number(totalPrice),
+            isDeliveryPriority,
+            setIsDeliveryPriority,
+            isPromotionApply,
+            setIsPromotionApply,
+            deliveryPriorityPrice: Number(deliveryPriorityPrice),
+
         }}>
             {children}
         </CartContext.Provider>

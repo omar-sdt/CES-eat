@@ -12,18 +12,16 @@ import Register from "./pages/register"
 import Restaurant from "./pages/restaurant"
 import { useSelector } from "react-redux";
 import { RootState } from "@/store.ts";
+import Payment from "./pages/payment"
 
 function PrivateRoute({ element }: { element: JSX.Element }) {
   const { userToken } = useSelector((state: RootState) => state.auth);
-
-  console.log("userToken", userToken);
 
   // Si l'utilisateur n'est pas connecté, redirige vers la page de login
   return userToken ? element : <Navigate to="/login" />;
 }
 
 function App() {
-
   return (
     <>
       <BrowserRouter>
@@ -44,7 +42,7 @@ function App() {
 
                 {/* Routes privées */}
                 <Route path="/profile" element={<PrivateRoute element={<Profile />} />} />
-                <Route path="/orders" element={<PrivateRoute element={<Orders />} />} />
+                <Route path="/payment" element={<PrivateRoute element={<Payment />} />} />
               </Routes>
             </FilterProvider>
           </CartProvider>
