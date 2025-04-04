@@ -26,10 +26,11 @@ export function MyProfileForm({
   const [email, setEmail] = useState("liberty.croquettes@meow.com")
 
   return (
+
     <div className={cn("flex flex-col gap-6", className)} {...props}>
       <Card>
         <CardHeader className="text-center">
-          <CardTitle className="text-2xl">Mon Profil</CardTitle>
+          <CardTitle className="text-2xl">Mon profil</CardTitle>
         </CardHeader>
         <CardContent className="flex flex-col gap-6">
           <div className="grid gap-2">
@@ -65,8 +66,8 @@ export function MyProfileForm({
             />
           </div>
         </CardContent>
-        <CardFooter className="flex justify-between">
-
+        <CardFooter className="flex justify-start">
+            <Button variant="destructive">Supprimer le compte</Button>
         </CardFooter>
       </Card>
     </div>
