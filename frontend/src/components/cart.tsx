@@ -81,7 +81,7 @@ const Cart = () => {
                                         <div className="flex flex-col gap-6">
                                             <AccordionTrigger>
                                                 <div className="flex gap-4 items-center">
-                                                    <img src={restaurant?.src} alt={restaurant?.name} className="w-24 h-16 rounded-xs object-cover" />
+                                                    <img src={restaurant?.src} alt={restaurant?.name} className="w-24 rounded-xs object-cover" />
                                                     <div className="flex flex-col gap w-full">
                                                         <span className="text-xl font-semibold">{restaurant?.name.toUpperCase()} ({calculateNbItemsOfRestaurant(restaurantId)} article{calculateNbItemsOfRestaurant(restaurantId) > 1 ? "s" : ""})</span>
                                                         <span className="text-sm text-gray-600">{restaurant?.address}</span>

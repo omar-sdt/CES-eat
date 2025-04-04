@@ -25,7 +25,7 @@ const RestaurantItem = ({ resto }: RestaurantProps) => {
                 <img
                     src={src}
                     alt={alt}
-                    className="w-full h-auto rounded-lg shadow-lg z-10 absolute"
+                    className="w-full h-[7rem] rounded-lg shadow-lg z-10 absolute"
                     style={{ maxHeight: '200px', objectFit: 'cover' }}
                 />
             </div>
