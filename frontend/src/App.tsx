@@ -34,7 +34,7 @@ function App() {
                 <Route path="*" element={<Navigate to="/home" />} />
                 <Route path="/" element={<Navigate to="/home" />} />
                 <Route path="/home" element={<Home />} />
-                <Route path="/orders" element={<PrivateRoute element={<Orders />} />} />
+                <Route path="/orders" element={<Orders />} />
                 <Route path="/login" element={<Login />} />
                 <Route path="/register" element={<Register />} />
                 <Route path="/restaurant/:id" element={<Restaurant />} />
