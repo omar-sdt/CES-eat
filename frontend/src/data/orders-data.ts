@@ -12,4 +12,17 @@ export const orders = [
     orderDate: "2025-04-01T10:00:00Z", 
     deliveryTime: "2025-04-01T12:30:00Z" 
   },
-];
+  {
+    id: "order-3",
+    clientName: "Jean Dupont",
+    items: [
+      "Menu Crispy Naan Creamy",
+      "Menu Boxmaster Spicy"
+    ],
+    totalPrice: 24.9,
+    orderType: "Livraison",
+    status: "Prête",
+    orderDate: "2025-04-01T10:00:00Z",
+    deliveryTime: "2025-04-01T12:30:00Z"
+  },
+]; 
