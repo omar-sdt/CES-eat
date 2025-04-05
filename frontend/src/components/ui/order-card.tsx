@@ -10,3 +10,20 @@ type OrderProps = {
   orderDate: string;
   deliveryTime: string;
 };
+
+const OrderCard = ({
+  id,
+  clientName,
+  items,
+  totalPrice,
+  orderType,
+  status,
+  orderDate,
+  deliveryTime,
+}: OrderProps) => {
+  return (
+    
+  );
+};
+
+export default OrderCard;
