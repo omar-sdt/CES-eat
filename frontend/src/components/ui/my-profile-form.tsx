@@ -10,6 +10,7 @@ import {
 import { Label } from "@/components/ui/label"
 import { Input } from "@/components/ui/input"
 import { Button } from "@/components/ui/button"
+import { Popover, PopoverTrigger, PopoverContent } from "@/components/ui/popover"
 import { cn } from "@/lib/utils"
 import { useState } from "react"
 
@@ -29,6 +30,9 @@ export function MyProfileForm({
   const [lastName, setLastName] = useState("")
   const [phone, setPhone] = useState("06.12.34.56.78")
   const [email, setEmail] = useState(emailProp || "")
+
+  const [openPopover, setOpenPopover] = useState(false)
+  const [openDeletePopover, setOpenDeletePopover] = useState(false)
 
   return (
 
@@ -72,8 +76,52 @@ export function MyProfileForm({
           </div>
         </CardContent>
         <CardFooter className="flex justify-start gap-4">
-            <Button variant="destructive" effect="shineHover">Supprimer le compte</Button>
-            <Button variant="success" effect="shineHover">Sauvegarder les modifications</Button>
+        <Popover open={openDeletePopover} onOpenChange={setOpenDeletePopover}>
+          <PopoverTrigger asChild>
+            <Button
+              variant="destructive"
+              effect="shineHover"
+              onClick={() => setOpenDeletePopover(true)}
+            >
+              Supprimer le compte
+            </Button>
+          </PopoverTrigger>
+          <PopoverContent className="text-sm">
+            ⚠️ Êtes-vous sûr de vouloir supprimer votre compte ?
+            <div className="mt-2 flex justify-end gap-2">
+              <Button size="sm" variant="ghost" onClick={() => setOpenDeletePopover(false)}>
+                Annuler
+              </Button>
+              <Button
+                size="sm"
+                variant="destructive"
+                onClick={() => {
+                  // Action réelle de suppression ici
+                  setOpenDeletePopover(false)
+                }}
+              >
+                Confirmer
+              </Button>
+            </div>
+          </PopoverContent>
+        </Popover>
+            <Popover open={openPopover} onOpenChange={setOpenPopover}>
+              <PopoverTrigger asChild>
+                <Button
+                  variant="success"
+                  effect="shineHover"
+                  onClick={() => {
+                    setOpenPopover(true)
+                    setTimeout(() => setOpenPopover(false), 1500)
+                  }}
+                >
+                  Sauvegarder les modifications
+                </Button>
+              </PopoverTrigger>
+              <PopoverContent className="text-sm">
+                ✅ Modifications sauvegardées !
+              </PopoverContent>
+            </Popover>
         </CardFooter>
       </Card>
     </div>
