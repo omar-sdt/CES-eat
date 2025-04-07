@@ -2,9 +2,12 @@ import React from 'react';
 import { useLocation } from 'react-router-dom';
 import CommandeCard from '@/components/CommandeCard';
 import NavbarSimple from '@/components/NavbarSimple';
+import { useNavigate } from 'react-router-dom';
+
 
 const CommandeInfo = () => {
   const location = useLocation();
+  const navigate = useNavigate();
   const { state } = location;
 
   return (
@@ -24,7 +27,12 @@ const CommandeInfo = () => {
         />
 
         {/* Bouton pour accepter */}
-        <button className="w-full bg-black text-white py-2 rounded mt-6">
+        <button
+  className="w-full bg-black text-white py-2 rounded mt-6 font-semibold"
+  onClick={() =>
+    navigate('/commande-suivi', { state }) // On renvoie les mêmes infos à la page suivante
+  }
+>
           Accepter la livraison
         </button>
       </div>
