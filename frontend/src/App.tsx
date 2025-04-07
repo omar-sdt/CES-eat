@@ -12,6 +12,8 @@ import Register from "./pages/register"
 import Restaurant from "./pages/restaurant"
 import Home_livreur from "./pages/Home_livreur"
 import Commandes from './pages/Commandes';
+import CommandeInfo from './pages/CommandeInfo'; 
+
 
 
 
@@ -26,7 +28,7 @@ function Layout({ children }: { children: ReactNode }) {
   const location = useLocation();
 
   // Routes où la navbar doit être cachée
-  const noNavbarRoutes = ['/home_livreur', '/Commandes'];
+  const noNavbarRoutes = ['/home_livreur', '/Commandes', '/commande-info'];
 
   return (
     <>
@@ -55,6 +57,7 @@ function App() {
                   <Route path="/restaurant/:id" element={<Restaurant />} />
                   <Route path="/home_livreur" element={<Home_livreur />} />
                   <Route path="/commandes" element={<Commandes />} />
+                  <Route path="/commande-info" element={<CommandeInfo />} />
 
 
                   <Route path="/profile" element={<PrivateRoute element={<Profile />} />} />
