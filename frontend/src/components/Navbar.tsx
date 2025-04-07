@@ -1,10 +1,10 @@
 import { Link, useLocation } from 'react-router-dom';
 import { Button } from './ui/button';
-import Panier from './cart';
 import { CookingPot } from 'lucide-react';
 import { DropdownNavbar } from './drop-down-navbar';
 import { useSelector } from "react-redux";
 import { RootState } from "@/store.ts";
+import {Cart} from "@/components/cart-v2.tsx";
 
 const Navbar = () => {
   const { userToken } = useSelector((state: RootState) => state.auth);
@@ -32,7 +32,7 @@ const Navbar = () => {
           </Button>
         ) : (
           <>
-            <Panier />
+            <Cart />
 
             {/* Afficher les boutons "Mes commandes" et "Mon compte" uniquement si l'utilisateur est connecté */}
             {userToken ? (

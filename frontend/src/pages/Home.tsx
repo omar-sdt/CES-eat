@@ -5,10 +5,13 @@ import SponsorshipSection from "@/components/sponsorship-section";
 import { Button } from "@/components/ui/button";
 import FilterList from "@/components/filter-list";
 import { useFilter } from "@/context/filter-context";
+import {useGetAllRestaurantsQuery} from "@/services/restaurant.service.ts";
 
 const Home = () => {
-    const { selectedFilter, setSelectedFilter, resultCount } = useFilter();
+    const { selectedFilter, setSelectedFilter } = useFilter();
+    const { data: restaurants } = useGetAllRestaurantsQuery();
 
+    const resultCount = restaurants ? restaurants.length : 0;
 
     return (
         <div className="w-full max-w-7xl mx-auto p-4 flex flex-col items-center">
@@ -36,10 +39,10 @@ const Home = () => {
                 </div>
             </div>
 
-            {selectedFilter ? (
+            {restaurants ? (
                 <div className="w-full flex flex-col mt-4">
                     <h2 className="text-xl font-bold mb-4">{resultCount} résultat{resultCount > 1 ? 's' : ''}</h2>
-                    <RestaurantList />
+                    <RestaurantList restaurants={restaurants} />
                 </div>
             ) : (
                 <SponsorshipSection />
