@@ -13,15 +13,22 @@ import { Button } from "@/components/ui/button"
 import { cn } from "@/lib/utils"
 import { useState } from "react"
 
+type MyProfileFormProps = {
+  name?: string
+  email?: string
+} & React.ComponentPropsWithoutRef<"div">
+
 export function MyProfileForm({
   className,
+  name: nameProp,
+  email: emailProp,
   ...props
-}: React.ComponentPropsWithoutRef<"div">) {
+}: MyProfileFormProps) {
 
-  const [firstName, setFirstName] = useState("Liberty")
-  const [lastName, setLastName] = useState("Sabatier")
+  const [firstName, setFirstName] = useState(nameProp || "")
+  const [lastName, setLastName] = useState("")
   const [phone, setPhone] = useState("06.12.34.56.78")
-  const [email, setEmail] = useState("liberty.croquettes@meow.com")
+  const [email, setEmail] = useState(emailProp || "")
 
   return (
 
