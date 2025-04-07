@@ -24,7 +24,7 @@ export const AuthProvider = ({ children }: AuthProviderProps) => {
         if (token) {
             setAccessToken(token);
         }
-    }, []);
+    }, [localStorage]);
 
     const login = async (email: string, password: string) => {
         try {

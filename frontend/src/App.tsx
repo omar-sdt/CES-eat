@@ -3,23 +3,25 @@ import Home from "./pages/home"
 import Profile from "./pages/profile"
 import Orders from "./pages/orders"
 import Login from "./pages/login"
-import { AuthProvider, useAuth } from "./context/auth-context"
+import { AuthProvider } from "./context/auth-context"
 import { JSX } from "react"
 import Navbar from "@/components/navbar"
 import { CartProvider } from "./context/cart-context"
 import { FilterProvider } from "./context/filter-context"
 import Register from "./pages/register"
 import Restaurant from "./pages/restaurant"
+import { useSelector } from "react-redux";
+import { RootState } from "@/store.ts";
+import Payment from "./pages/payment"
 
 function PrivateRoute({ element }: { element: JSX.Element }) {
-  const { accessToken } = useAuth();
+  const { userToken } = useSelector((state: RootState) => state.auth);
 
   // Si l'utilisateur n'est pas connecté, redirige vers la page de login
-  return accessToken ? element : <Navigate to="/login" />;
+  return userToken ? element : <Navigate to="/login" />;
 }
 
 function App() {
-
   return (
     <>
       <BrowserRouter>
@@ -40,7 +42,7 @@ function App() {
 
                 {/* Routes privées */}
                 <Route path="/profile" element={<PrivateRoute element={<Profile />} />} />
-                <Route path="/orders" element={<PrivateRoute element={<Orders />} />} />
+                <Route path="/payment" element={<PrivateRoute element={<Payment />} />} />
               </Routes>
             </FilterProvider>
           </CartProvider>

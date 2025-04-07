@@ -1,7 +1,11 @@
 import { MyProfileForm } from "@/components/ui/my-profile-form"
 import { SecurityForm } from "@/components/ui/security-form"
 
+import {useGetUserDetailsQuery} from "@/services/auth.service.ts";
+
 const Profile = () => {
+    const { data } = useGetUserDetailsQuery();
+
     return (
       <>
         <div className="flex w-full justify-center">
