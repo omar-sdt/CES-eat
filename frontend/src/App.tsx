@@ -11,6 +11,8 @@ import { FilterProvider } from "./context/filter-context"
 import Register from "./pages/register"
 import Restaurant from "./pages/restaurant"
 import Home_livreur from "./pages/Home_livreur"
+import Commandes from './pages/Commandes';
+
 
 
 function PrivateRoute({ element }: { element: JSX.Element }) {
@@ -23,8 +25,8 @@ function PrivateRoute({ element }: { element: JSX.Element }) {
 function Layout({ children }: { children: ReactNode }) {
   const location = useLocation();
 
-  // Ajoute ici les routes où tu ne veux PAS afficher la Navbar
-  const noNavbarRoutes = ["/home_livreur"];
+  // Routes où la navbar doit être cachée
+  const noNavbarRoutes = ['/home_livreur', '/Commandes'];
 
   return (
     <>
@@ -52,6 +54,8 @@ function App() {
                   <Route path="/register" element={<Register />} />
                   <Route path="/restaurant/:id" element={<Restaurant />} />
                   <Route path="/home_livreur" element={<Home_livreur />} />
+                  <Route path="/commandes" element={<Commandes />} />
+
 
                   <Route path="/profile" element={<PrivateRoute element={<Profile />} />} />
                 </Routes>
