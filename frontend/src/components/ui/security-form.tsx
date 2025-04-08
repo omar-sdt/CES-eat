@@ -11,6 +11,7 @@ import {
 import { Label } from "@/components/ui/label"
 import { Input } from "@/components/ui/input"
 import { Button } from "@/components/ui/button"
+import { Popover, PopoverTrigger, PopoverContent } from "@/components/ui/popover"
 import { cn } from "@/lib/utils"
 import { useState } from "react"
 import { Eye, EyeOff } from "lucide-react"
@@ -35,6 +36,8 @@ export function SecurityForm({
     setConfirmPassword(value)
     setIsPasswordMatch(value === newPassword && value !== "Mot de passe")
   }
+
+  const [openPopover, setOpenPopover] = useState(false)
 
   return (
     <div className={cn("flex flex-col gap-6", className)} {...props}>
@@ -100,7 +103,25 @@ export function SecurityForm({
           </div>
         </CardContent>
         <CardFooter className="flex justify-start">
-          <Button variant="success" effect="shineHover">Mettre à jour</Button>
+        <Popover open={openPopover} onOpenChange={setOpenPopover}>
+          <PopoverTrigger asChild>
+            <Button
+              variant="success"
+              effect="shineHover"
+              disabled={!isPasswordMatch}
+              onClick={() => {
+                setOpenPopover(true)
+                setTimeout(() => setOpenPopover(false), 1000)
+              }}
+            >
+              Mettre à jour
+            </Button>
+          </PopoverTrigger>
+          <PopoverContent className="text-sm">
+            ✅ Mot de passe mis à jour !
+          </PopoverContent>
+        </Popover>
+
         </CardFooter>
       </Card>
     </div>
