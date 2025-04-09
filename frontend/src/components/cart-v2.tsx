@@ -20,6 +20,7 @@ import {Label} from "@/components/ui/label.tsx";
 import {Input} from "@/components/ui/input.tsx";
 import {useGetUserDetailsQuery} from "@/services/auth.service.ts";
 import {toast} from "sonner";
+import {useOrderNotifications} from "@/hooks/use-order-notifications.ts";
 
 export const Cart = () => {
     const cart = useAppSelector((state) => state.cart);
@@ -29,6 +30,7 @@ export const Cart = () => {
     const [drawerOpen, setDrawerOpen] = React.useState(false);
     const dispatch = useAppDispatch();
     const [createOrder] = useCreateOrderMutation();
+    useOrderNotifications(user?.id ?? '');
 
     const totalItems = React.useMemo(() => {
         return cart.dishes.reduce((total, item) => total + item.quantity, 0);
