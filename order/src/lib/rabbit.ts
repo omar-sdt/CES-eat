@@ -6,7 +6,7 @@ let channel: amqp.Channel;
 dotenv.config()
 
 export const initRabbit = async () => {
-    const conn = await amqp.connect(process.env.RABBITMQ_URL || 'amqp://root:root@localhost');
+    const conn = await amqp.connect(process.env.RABBITMQ_URL || 'amqp://root:root@rabbitmq:5672');
     channel = await conn.createChannel();
     await channel.assertExchange('orders', 'topic', { durable: false });
 };

@@ -45,7 +45,7 @@ io.on('connection', (socket) => {
 });
 
 async function connectRabbit() {
-    const conn = await amqp.connect('amqp://root:root@localhost');
+    const conn = await amqp.connect(process.env.RABBITMQ_URL || 'amqp://root:root@rabbitmq:5672');
     const channel = await conn.createChannel();
     await channel.assertExchange('orders', 'topic', { durable: false });
 

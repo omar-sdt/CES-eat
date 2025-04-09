@@ -25,7 +25,7 @@ RUN tsc
 
 # Run in production mode
 ENV NODE_ENV=production
-ENV PORT=3000
+ENV PORT=4000
 ENV DB_NAME=mydb
 ENV DB_USER=root
 ENV DB_PASS=root

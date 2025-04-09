@@ -1,0 +1,114 @@
+version: '3.8'
+
+services:
+  mongo:
+    image: mongo:6.0
+    container_name: mongo
+    restart: always
+    ports:
+      - "27017:27017"
+    environment:
+      MONGO_INITDB_ROOT_USERNAME: root
+      MONGO_INITDB_ROOT_PASSWORD: root
+    volumes:
+      - mongo-data:/data/db
+  postgres:
+    image: postgres:13
+    container_name: postgres
+    restart: always
+    environment:
+      POSTGRES_USER: root
+      POSTGRES_PASSWORD: root
+      POSTGRES_DB: base
+    ports:
+      - "5432:5432"
+    volumes:
+      - db-data:/var/lib/postgresql/data
+  auth-service:
+    build: ./auth
+    container_name: auth-service
+    expose:
+      - "3000"
+    depends_on:
+      - mongo
+      - postgres
+    environment:
+      PORT: 3000
+      MONGO_DB_HOST: mongo
+      MONGO_DB_NAME: mydb
+      MONGO_DB_USER: root
+      MONGO_DB_PASSWORD: root
+      MONGO_DB_AUTH_SOURCE: admin
+      ACCESS_JWT_KEY: secret
+      DATABASE_URL: postgresql://root:root@postgres:5432/base?schema=public
+  public-service:
+    build: ./public
+    container_name: public-service
+    expose:
+      - "3000"
+    depends_on:
+      - auth-service
+  private-service:
+    build: ./private
+    container_name: private-service
+    expose:
+      - "3000"
+    depends_on:
+      - auth-service
+  order-service:
+    build: ./order
+    container_name: order-service
+    expose:
+      - "3000"
+    environment:
+      RABBITMQ_URL: amqp://root:root@rabbitmq:5672
+    depends_on:
+      - auth-service
+      - mongo
+      - rabbitmq
+  notification-service:
+    build: ./notifications
+    container_name: notification-service
+    ports:
+      - "4000:4000"
+    environment:
+      RABBITMQ_URL: amqp://root:root@rabbitmq:5672
+      PORT: 4000
+    depends_on:
+      - rabbitmq
+  mongo-express:
+    image: mongo-express
+    container_name: mongo-express
+    restart: always
+    ports:
+      - "8081:8081"
+    environment:
+      ME_CONFIG_MONGODB_ADMINUSERNAME: root
+      ME_CONFIG_MONGODB_ADMINPASSWORD: root
+      ME_CONFIG_MONGODB_SERVER: mongo
+  nginx:
+    image: nginx:latest
+    container_name: gateway
+    volumes:
+      - ./nginx.conf:/etc/nginx/nginx.conf
+    ports:
+      - "8080:8080"
+    depends_on:
+      - auth-service
+  rabbitmq:
+    image: rabbitmq:3-management
+    container_name: rabbitmq
+    restart: always
+    environment:
+      RABBITMQ_DEFAULT_USER: root
+      RABBITMQ_DEFAULT_PASS: root
+    ports:
+      - "5672:5672"     # port AMQP pour communication interne/externe
+      - "15672:15672"   # interface web (facultatif mais pratique)
+    volumes:
+      - rabbitmq-data:/var/lib/rabbitmq
+
+volumes:
+  mongo-data:
+  db-data:
+  rabbitmq-data:
