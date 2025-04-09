@@ -1,17 +1,34 @@
-import {removeFromCart, updateQuantity} from "@/features/cart-slice.ts";
+import {clearCart, removeFromCart, updateQuantity} from "@/features/cart-slice.ts";
 import {useAppDispatch, useAppSelector} from "@/store.ts";
 import {Button} from "@/components/ui/button.tsx";
-import {Minus, Plus, ShoppingCart, Trash, X} from "lucide-react";
+import {ChevronLeft, ChevronRight, Minus, Plus, ShoppingCart, Trash, X} from "lucide-react";
 import {
     Drawer, DrawerClose, DrawerContent, DrawerFooter,
     DrawerTrigger,
 } from "@/components/ui/drawer"
 import React from "react";
 import {Link} from "react-router-dom";
+import {useCreateOrderMutation} from "@/services/order.service.ts";
+import {
+    Dialog,
+    DialogContent,
+    DialogDescription,
+    DialogHeader,
+    DialogTitle,
+} from "@/components/ui/dialog.tsx";
+import {Label} from "@/components/ui/label.tsx";
+import {Input} from "@/components/ui/input.tsx";
+import {useGetUserDetailsQuery} from "@/services/auth.service.ts";
+import {toast} from "sonner";
 
 export const Cart = () => {
     const cart = useAppSelector((state) => state.cart);
+    const { data: user } = useGetUserDetailsQuery();
+    const [address, setAddress] = React.useState<string>("");
+    const [openDialog, setOpenDialog] = React.useState(false);
+    const [drawerOpen, setDrawerOpen] = React.useState(false);
     const dispatch = useAppDispatch();
+    const [createOrder] = useCreateOrderMutation();
 
     const totalItems = React.useMemo(() => {
         return cart.dishes.reduce((total, item) => total + item.quantity, 0);
@@ -29,8 +46,45 @@ export const Cart = () => {
         dispatch(updateQuantity({ _id: dishId, quantity }));
     }
 
+    const handleCreateOrder = React.useCallback( async () => {
+        const dishes = cart.dishes.map(item => ({
+            dishId: item.dish._id,
+            quantity: item.quantity,
+            price: item.dish.price,
+        }));
+        const restaurantId = cart.dishes[0].dish.restaurantId;
+
+        const userId = user?.id ?? '';
+
+        const orderData = {
+            userId: userId,
+            restaurantId,
+            dishes,
+            deliveryAddress: address,
+            totalAmount: totalPrice,
+        };
+
+        console.log(orderData);
+
+        try {
+            const response = await createOrder(orderData).unwrap();
+            console.log("Order created successfully:", response);
+            // Optionally, you can clear the cart after successful order creation
+            dispatch(clearCart()); // Clear the cart
+            setAddress(""); // Reset the address field
+            setOpenDialog(false); // Close the dialog
+            setDrawerOpen(false); // Close the drawer
+
+            toast.success("Order created successfully");
+        } catch (error) {
+            console.error("Failed to create order:", error);
+            toast.error("Failed to create order");
+        }
+    }, [createOrder, cart, address, totalPrice, user, dispatch]);
+
     return (
-        <Drawer>
+        <Dialog open={openDialog} onOpenChange={setOpenDialog}>
+        <Drawer open={drawerOpen} onOpenChange={setDrawerOpen}>
             <DrawerTrigger asChild>
                 <Button variant="default" size="navbar" effect="shineHover">
                     <ShoppingCart />
@@ -121,12 +175,51 @@ export const Cart = () => {
                     </div>
 
                     <DrawerFooter>
-                        <DrawerClose asChild>
-                            <Button>Commander</Button>
-                        </DrawerClose>
+                        <Button onClick={() => setOpenDialog(true)}>Commander</Button>
                     </DrawerFooter>
                 </DrawerContent>
             )}
         </Drawer>
+            <DialogContent>
+                <DialogHeader>
+                    <DialogTitle>
+                        Passer une commande
+                    </DialogTitle>
+                    <DialogDescription>
+                        Complétez les informations ci-dessous pour passer votre commande.
+                    </DialogDescription>
+                </DialogHeader>
+
+                <div className="flex flex-col gap-4 w-full">
+                    <p className="text-3xl font-semibold text-center">{totalPrice.toFixed(2)}€</p>
+
+                    <div className="flex flex-col gap-2">
+                        <Label htmlFor="address">Adresse de livraison</Label>
+                        <Input
+                            id="address"
+                            type="text"
+                            placeholder="Entrez votre adresse de livraison"
+                            className="w-full"
+                            value={address}
+                            onChange={(e) => setAddress(e.target.value)}
+                        />
+                    </div>
+
+                    <div className="flex items-center justify-between">
+                        <Button variant="outline" onClick={() => setOpenDialog(false)}>
+                            <ChevronLeft />
+                            Retour
+                        </Button>
+
+                        <Button onClick={() => {
+                            handleCreateOrder();
+                            setOpenDialog(false);
+                        }}>
+                            Commander <ChevronRight />
+                        </Button>
+                    </div>
+                </div>
+            </DialogContent>
+        </Dialog>
     )
 }
