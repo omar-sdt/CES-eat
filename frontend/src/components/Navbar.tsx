@@ -13,6 +13,16 @@ const Navbar = () => {
   const isRegisterPage = location.pathname === "/register";
   const isPaymentPage = location.pathname === "/payment";
 
+  const isDeliveryPage = location.pathname === "/home_livreur" || location.pathname === "/commande-suivi" || location.pathname === "/commandes" || location.pathname === "/commande-info";
+
+  if (isDeliveryPage) {
+    return (
+      <>
+      </>)
+  }
+
+
+
   // Navbar pour les pages login ou payment
   if (isLoginPage || isRegisterPage || isPaymentPage) {
     return (
