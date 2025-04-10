@@ -11,14 +11,14 @@ import {
 } from "@/components/ui/card"
 import { Input } from "@/components/ui/input"
 import { Label } from "@/components/ui/label"
-import {Link, useNavigate} from "react-router-dom"
-import {useDispatch} from "react-redux";
-import {AppDispatch} from "@/store.ts";
-import {useForm} from "react-hook-form";
-import {loginSchema, LoginUser} from "@/schemas/user.schema.ts";
-import {zodResolver} from "@hookform/resolvers/zod";
-import {loginUser} from "@/features/auth/auth.actions.ts";
-import {toast} from "sonner";
+import { Link, useNavigate } from "react-router-dom"
+import { useDispatch } from "react-redux";
+import { AppDispatch } from "@/store.ts";
+import { useForm } from "react-hook-form";
+import { loginSchema, LoginUser } from "@/schemas/userSchema";
+import { zodResolver } from "@hookform/resolvers/zod";
+import { loginUser } from "@/features/auth/auth.actions.ts";
+import { toast } from "sonner";
 
 export function LoginForm({
     className,

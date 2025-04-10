@@ -1,5 +1,5 @@
 import { z } from 'zod';
-import {dishSchema} from "@/schemas/dish.schema.ts";
+import { dishSchema } from "@/schemas/dishSchema";
 
 export const restaurantBaseSchema = z.object({
     name: z.string().min(1, "Le nom est requis"),

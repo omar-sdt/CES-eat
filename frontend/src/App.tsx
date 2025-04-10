@@ -1,20 +1,20 @@
 import { BrowserRouter, Routes, Route, Navigate } from "react-router-dom"
 import Home from "./pages/home"
-import Profile from "./pages/profile1"
+import Profile from "./pages/Profile"
 import Orders from "./pages/Orders"
-import Login from "./pages/login1"
+import Login from "./pages/Login"
 import { AuthProvider } from "./context/auth-context"
 import { JSX } from "react"
 import Navbar from "@/components/navbar"
 import { CartProvider } from "./context/cart-context"
 import { FilterProvider } from "./context/filter-context"
-import Register from "./pages/register1"
-import Restaurant from "./pages/restaurant1"
+import Register from "./pages/Register"
+import Restaurant from "./pages/Restaurant"
 import CommandeInfo from './pages/CommandeInfo';
 import CommandeSuivi from './pages/CommandeSuivi';
 import { useSelector } from "react-redux";
 import { RootState } from "@/store.ts";
-import Payment from "./pages/payment1"
+import Payment from "./pages/Payment"
 import MyDeliveries from "./pages/MyDeliveries"
 import OrdersAvailable from "./pages/OrdersAvailable"
 import MyRestaurant from "./pages/MyRestaurant"

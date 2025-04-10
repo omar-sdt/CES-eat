@@ -1,5 +1,5 @@
 import { createSlice, PayloadAction } from "@reduxjs/toolkit";
-import { Dish } from "@/schemas/dish.schema.ts";
+import { Dish } from "@/schemas/dishSchema";
 
 interface CartItem {
     dish: Dish;

@@ -15,7 +15,7 @@ import { Label } from "@/components/ui/label"
 import { Link, useNavigate } from "react-router-dom"
 import { useForm } from "react-hook-form";
 import { zodResolver } from "@hookform/resolvers/zod";
-import { RegisterUser, registerUserSchema } from "@/schemas/user.schema.ts";
+import { RegisterUser, registerUserSchema } from "@/schemas/userSchema";
 import { useDispatch } from "react-redux";
 import { registerUser } from "@/features/auth/auth.actions.ts";
 import { AppDispatch } from "@/store.ts";

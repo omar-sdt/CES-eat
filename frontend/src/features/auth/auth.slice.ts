@@ -1,6 +1,6 @@
-import {User} from "@/schemas/user.schema.ts";
-import {createSlice} from "@reduxjs/toolkit";
-import {loginUser, registerUser} from "@/features/auth/auth.actions.ts";
+import { User } from "@/schemas/userSchema";
+import { createSlice } from "@reduxjs/toolkit";
+import { loginUser, registerUser } from "@/features/auth/auth.actions.ts";
 
 const userToken = localStorage.getItem('accessToken')
     ? localStorage.getItem('accessToken')

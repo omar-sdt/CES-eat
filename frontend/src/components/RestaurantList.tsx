@@ -1,4 +1,4 @@
-import RestaurantItem from './restaurant-item1';
+import RestaurantItem from './RestaurantItem';
 import { Restaurant } from "@/schemas/restaurantSchema.ts";
 
 type RestaurantListProps = {

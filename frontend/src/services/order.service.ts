@@ -1,6 +1,6 @@
-import {createApi} from "@reduxjs/toolkit/query/react";
-import {axiosBaseQuery} from "@/lib/axios-base-query.ts";
-import {CreateOrder, CreateOrderResponse, createOrderSchemaResponse} from "@/schemas/order.schema.ts";
+import { createApi } from "@reduxjs/toolkit/query/react";
+import { axiosBaseQuery } from "@/lib/axios-base-query.ts";
+import { CreateOrder, CreateOrderResponse, createOrderSchemaResponse } from "@/schemas/orderSchema";
 import axios from "axios";
 
 export const orderApi = createApi({

@@ -1,4 +1,4 @@
-import SponsorshipSection from "../sponsorship-section1"
+import SponsorshipSection from "../SponsorshipSection"
 
 const RestaurantHome = () => {
     return (

@@ -2,7 +2,7 @@ import { useNavigate, useParams } from "react-router-dom";
 import { ArrowLeft, Calendar, Map, Phone, Star } from "lucide-react";
 import { LoadScript, GoogleMap, Marker } from "@react-google-maps/api";
 import { menu } from "@/data/menu";
-import MenuItem from "@/components/menu-item1";
+import MenuItem from "@/components/MenuItem";
 import { Button } from "@/components/ui/button";
 import { useGetRestaurantByIdQuery } from "@/services/restaurant.service.ts";
 

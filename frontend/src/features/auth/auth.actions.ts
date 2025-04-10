@@ -6,7 +6,7 @@ import {
     userSchema,
     User,
     loginResponseSchema, loginErrorSchema, LoginResponse, LoginError
-} from "@/schemas/user.schema.ts";
+} from "@/schemas/userSchema";
 import axios from "axios";
 
 export const registerUser = createAsyncThunk<

@@ -1,13 +1,13 @@
-import {Dish} from "@/schemas/dish.schema.ts";
-import {useAppDispatch} from "@/store.ts";
+import { Dish } from "@/schemas/dishSchema";
+import { useAppDispatch } from "@/store.ts";
 import React from "react";
-import {addToCart} from "@/features/cart-slice.ts";
-import {Dialog, DialogContent, DialogHeader, DialogTitle, DialogTrigger} from "@/components/ui/dialog.tsx";
-import {Tooltip, TooltipContent, TooltipProvider, TooltipTrigger} from "@/components/ui/tooltip.tsx";
-import {Plus} from "lucide-react";
-import {Label} from "@/components/ui/label.tsx";
-import {Input} from "@/components/ui/input.tsx";
-import {Button} from "@/components/ui/button.tsx";
+import { addToCart } from "@/features/cart-slice.ts";
+import { Dialog, DialogContent, DialogHeader, DialogTitle, DialogTrigger } from "@/components/ui/dialog.tsx";
+import { Tooltip, TooltipContent, TooltipProvider, TooltipTrigger } from "@/components/ui/tooltip.tsx";
+import { Plus } from "lucide-react";
+import { Label } from "@/components/ui/label.tsx";
+import { Input } from "@/components/ui/input.tsx";
+import { Button } from "@/components/ui/button.tsx";
 
 
 export function DialogChooseMenu({ dish }: { dish: Dish; }) {

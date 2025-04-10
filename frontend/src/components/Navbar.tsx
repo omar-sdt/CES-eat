@@ -1,8 +1,8 @@
 import { Link, useLocation } from 'react-router-dom';
 import { Button } from './ui/button';
-import Cart from './cart1';
+import Cart from './Cart';
 import { ArrowLeft, Utensils } from 'lucide-react';
-import { DropdownNavbar } from './drop-down-navbar1';
+import { DropdownNavbar } from './DropDownNavbar';
 import { useSelector } from "react-redux";
 import { RootState } from "@/store.ts";
 import { useGetUserDetailsQuery } from '@/services/auth.service';

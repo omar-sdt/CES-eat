@@ -1,5 +1,5 @@
-import { Dish } from "@/schemas/dish.schema.ts";
-import { DialogChooseMenu } from "@/components/dialog-choose-menu1";
+import { Dish } from "@/schemas/dishSchema";
+import { DialogChooseMenu } from "@/components/DialogChooseMenu";
 
 type MenuItemProps = {
     dish: Dish;
