@@ -1,21 +1,19 @@
-import {configureStore} from "@reduxjs/toolkit";
+import { configureStore } from "@reduxjs/toolkit";
 import authSlice from "@/features/auth/auth.slice.ts";
-import {authApi} from "@/services/auth.service.ts";
-import restaurantsApi from "@/services/restaurant.service.ts";
+import { authApi } from "@/services/auth.service.ts";
 import cartReducer from "@/features/cart-slice.ts";
-import {TypedUseSelectorHook, useDispatch, useSelector} from "react-redux";
+import { TypedUseSelectorHook, useDispatch, useSelector } from "react-redux";
 import orderApi from "@/services/order.service.ts";
 
 const store = configureStore({
     reducer: {
         auth: authSlice,
         [authApi.reducerPath]: authApi.reducer,
-        [restaurantsApi.reducerPath]: restaurantsApi.reducer,
         [orderApi.reducerPath]: orderApi.reducer,
         cart: cartReducer,
     },
     middleware: (getDefaultMiddleware) =>
-        getDefaultMiddleware().concat(authApi.middleware, restaurantsApi.middleware, orderApi.middleware),
+        getDefaultMiddleware().concat(authApi.middleware, orderApi.middleware),
 });
 
 export type AppDispatch = typeof store.dispatch;

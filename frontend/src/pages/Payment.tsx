@@ -3,7 +3,7 @@ import { Input } from "@/components/ui/input"
 import { CalendarIcon, Check, House, Minus, Plus, ShoppingCart, Trash, Zap } from "lucide-react"
 import { format } from "date-fns"
 import { cn } from "@/lib/utils"
-import { useEffect, useState } from "react"
+import { useState } from "react"
 import {
     Popover,
     PopoverContent,
