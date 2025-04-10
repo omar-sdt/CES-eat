@@ -1,6 +1,5 @@
 import { useLocation } from 'react-router-dom';
 import CommandeCard from '@/components/CommandeCard';
-import NavbarSimple from '@/components/NavbarSimple';
 import { useNavigate } from 'react-router-dom';
 
 
@@ -11,8 +10,6 @@ const CommandeInfo = () => {
 
   return (
     <div>
-      <NavbarSimple />
-
       <div className="p-4">
         {/* Affichage de la commande */}
         <CommandeCard

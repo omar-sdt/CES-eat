@@ -21,7 +21,7 @@ import { registerUser } from "@/features/auth/auth.actions.ts";
 import { AppDispatch } from "@/store.ts";
 import { toast } from "sonner";
 import { Select, SelectContent, SelectGroup, SelectItem, SelectTrigger, SelectValue } from "./ui/select"
-import { Controller } from "react-hook-form" // Import ajouté
+import { Controller } from "react-hook-form"
 
 export function RegisterForm({
     className,

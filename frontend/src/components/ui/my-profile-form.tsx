@@ -13,30 +13,26 @@ import { Button } from "@/components/ui/button"
 import { Popover, PopoverTrigger, PopoverContent } from "@/components/ui/popover"
 import { cn } from "@/lib/utils"
 import { useState } from "react"
+import { useGetUserDetailsQuery } from "@/services/auth.service"
 
-type MyProfileFormProps = {
-  name?: string
-  email?: string
-} & React.ComponentPropsWithoutRef<"div">
+export function MyProfileForm() {
 
-export function MyProfileForm({
-  className,
-  name: nameProp,
-  email: emailProp,
-  ...props
-}: MyProfileFormProps) {
+  const { data } = useGetUserDetailsQuery();
 
-  const [firstName, setFirstName] = useState(nameProp || "")
+
+  const [firstName, setFirstName] = useState(data?.name)
   const [lastName, setLastName] = useState("")
   const [phone, setPhone] = useState("06.12.34.56.78")
-  const [email, setEmail] = useState(emailProp || "")
+  const [email, setEmail] = useState(data?.email)
+  const [role, setRole] = useState(data?.role)
 
   const [openPopover, setOpenPopover] = useState(false)
   const [openDeletePopover, setOpenDeletePopover] = useState(false)
 
+
   return (
 
-    <div className={cn("flex flex-col gap-6", className)} {...props}>
+    <div className={cn("flex flex-col gap-6")}>
       <Card>
         <CardHeader className="text-center">
           <CardTitle className="text-2xl">Mon profil</CardTitle>
@@ -59,6 +55,14 @@ export function MyProfileForm({
             />
           </div>
           <div className="grid gap-2">
+            <Label htmlFor="role">Rôle</Label>
+            <Input
+              id="role"
+              value={role}
+              disabled
+            />
+          </div>
+          <div className="grid gap-2">
             <Label htmlFor="phone">Numéro de téléphone</Label>
             <Input
               id="phone"
@@ -76,52 +80,52 @@ export function MyProfileForm({
           </div>
         </CardContent>
         <CardFooter className="flex justify-start gap-4">
-        <Popover open={openDeletePopover} onOpenChange={setOpenDeletePopover}>
-          <PopoverTrigger asChild>
-            <Button
-              variant="destructive"
-              effect="shineHover"
-              onClick={() => setOpenDeletePopover(true)}
-            >
-              Supprimer le compte
-            </Button>
-          </PopoverTrigger>
-          <PopoverContent className="text-sm">
-            ⚠️ Êtes-vous sûr de vouloir supprimer votre compte ?
-            <div className="mt-2 flex justify-end gap-2">
-              <Button size="sm" variant="ghost" onClick={() => setOpenDeletePopover(false)}>
-                Annuler
-              </Button>
+          <Popover open={openDeletePopover} onOpenChange={setOpenDeletePopover}>
+            <PopoverTrigger asChild>
               <Button
-                size="sm"
                 variant="destructive"
-                onClick={() => {
-                  // Action réelle de suppression ici
-                  setOpenDeletePopover(false)
-                }}
+                effect="shineHover"
+                onClick={() => setOpenDeletePopover(true)}
               >
-                Confirmer
+                Supprimer le compte
               </Button>
-            </div>
-          </PopoverContent>
-        </Popover>
-            <Popover open={openPopover} onOpenChange={setOpenPopover}>
-              <PopoverTrigger asChild>
+            </PopoverTrigger>
+            <PopoverContent className="text-sm">
+              ⚠️ Êtes-vous sûr de vouloir supprimer votre compte ?
+              <div className="mt-2 flex justify-end gap-2">
+                <Button size="sm" variant="ghost" onClick={() => setOpenDeletePopover(false)}>
+                  Annuler
+                </Button>
                 <Button
-                  variant="success"
-                  effect="shineHover"
+                  size="sm"
+                  variant="destructive"
                   onClick={() => {
-                    setOpenPopover(true)
-                    setTimeout(() => setOpenPopover(false), 1500)
+                    // Action réelle de suppression ici
+                    setOpenDeletePopover(false)
                   }}
                 >
-                  Sauvegarder les modifications
+                  Confirmer
                 </Button>
-              </PopoverTrigger>
-              <PopoverContent className="text-sm">
-                ✅ Modifications sauvegardées !
-              </PopoverContent>
-            </Popover>
+              </div>
+            </PopoverContent>
+          </Popover>
+          <Popover open={openPopover} onOpenChange={setOpenPopover}>
+            <PopoverTrigger asChild>
+              <Button
+                variant="success"
+                effect="shineHover"
+                onClick={() => {
+                  setOpenPopover(true)
+                  setTimeout(() => setOpenPopover(false), 1500)
+                }}
+              >
+                Sauvegarder les modifications
+              </Button>
+            </PopoverTrigger>
+            <PopoverContent className="text-sm">
+              ✅ Modifications sauvegardées !
+            </PopoverContent>
+          </Popover>
         </CardFooter>
       </Card>
     </div>

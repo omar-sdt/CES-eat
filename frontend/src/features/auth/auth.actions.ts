@@ -17,7 +17,7 @@ export const registerUser = createAsyncThunk<
     }
 >(
     'auth/register',
-    async ({ name, email, password }, { rejectWithValue }) => {
+    async ({ name, email, password, role }, { rejectWithValue }) => {
         try {
             const config = {
                 headers: {
@@ -27,7 +27,7 @@ export const registerUser = createAsyncThunk<
 
             const response = await axios.post(
                 'http://localhost:8080/register',
-                { name, email, password },
+                { name, email, password, role },
                 config
             );
 
