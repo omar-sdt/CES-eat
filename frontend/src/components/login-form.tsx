@@ -6,27 +6,46 @@ import {
     Card,
     CardContent,
     CardDescription,
-    CardFooter,
     CardHeader,
     CardTitle,
 } from "@/components/ui/card"
 import { Input } from "@/components/ui/input"
 import { Label } from "@/components/ui/label"
-import { Link } from "react-router-dom"
-import { useAuth } from "@/context/auth-context"
-import { useState } from "react"
+import {Link, useNavigate} from "react-router-dom"
+import {useDispatch} from "react-redux";
+import {AppDispatch} from "@/store.ts";
+import {useForm} from "react-hook-form";
+import {loginSchema, LoginUser} from "@/schemas/user.schema.ts";
+import {zodResolver} from "@hookform/resolvers/zod";
+import {loginUser} from "@/features/auth/auth.actions.ts";
+import {toast} from "sonner";
 
 export function LoginForm({
     className,
     ...props
 }: React.ComponentPropsWithoutRef<"div">) {
-    const { login, error } = useAuth();
-    const [email, setEmail] = useState("");
-    const [password, setPassword] = useState("");
+    const dispatch = useDispatch<AppDispatch>();
+    const navigate = useNavigate();
 
-    const handleSubmit = async (e: { preventDefault: () => void }) => {
-        e.preventDefault();
-        await login(email, password);
+    const {
+        register,
+        handleSubmit,
+        formState: { errors },
+    } = useForm<LoginUser>({
+        resolver: zodResolver(loginSchema)
+    })
+
+    const onSubmit = async (data: LoginUser) => {
+        try {
+            await dispatch(loginUser(data)).unwrap();
+
+            toast.success('Tu es connecté !');
+            navigate("/home");
+        } catch (err: any) {
+            // err est typé avec ton RegisterUserError
+            console.log(err);
+            toast.error("Erreur inconnue");
+        }
     };
 
     return (
@@ -39,7 +58,7 @@ export function LoginForm({
                     </CardDescription>
                 </CardHeader>
                 <CardContent>
-                    <form onSubmit={handleSubmit}>
+                    <form onSubmit={handleSubmit(onSubmit)}>
                         <div className="flex flex-col gap-6">
                             <div className="grid gap-2">
                                 <Label htmlFor="email">Adresse Email</Label>
@@ -47,10 +66,11 @@ export function LoginForm({
                                     id="email"
                                     type="email"
                                     placeholder="user@ceseat.com"
-                                    required
-                                    value={email}
-                                    onChange={(e) => setEmail(e.target.value)}
+                                    {...register("email")}
                                 />
+                                {errors.email && (
+                                    <p className="text-red-500">{errors.email.message}</p>
+                                )}
                             </div>
                             <div className="grid gap-2">
                                 <div className="flex items-center">
@@ -65,9 +85,12 @@ export function LoginForm({
                                 <Input
                                     id="password"
                                     type="password"
-                                    value={password}
-                                    onChange={(e) => setPassword(e.target.value)}
-                                    required />
+                                    placeholder="********"
+                                    {...register("password")}
+                                />
+                                {errors.password && (
+                                    <p className="text-red-500">{errors.password.message}</p>
+                                )}
                             </div>
                             <Button type="submit" effect="shineHover" className="w-full">
                                 Se connecter
@@ -81,9 +104,6 @@ export function LoginForm({
                         </div>
                     </form>
                 </CardContent>
-                <CardFooter>
-                    {error && <p className="text-red-500">{error}</p>}
-                </CardFooter>
             </Card>
         </div>
     )

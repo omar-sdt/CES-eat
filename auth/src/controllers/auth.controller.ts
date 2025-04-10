@@ -1,8 +1,8 @@
 import { Request, Response } from "express";
 import bcrypt from "bcrypt";
 import jwt from "jsonwebtoken";
-import {StatusCodes} from "http-status-codes";
-import {userLoginSchema, userRegisterSchema} from "../schemas/user.schema";
+import { StatusCodes } from "http-status-codes";
+import { userLoginSchema, userRegisterSchema } from "../schemas/user.schema";
 import prisma from "../lib/prisma";
 
 export const registerController = async (req: Request, res: Response) => {
@@ -36,7 +36,11 @@ export const loginController = async (req: Request, res: Response) => {
     // Create a token
     const accessToken = jwt.sign({ email: user.email, exp: Math.floor(Date.now() / 1000) + 60 * 60 }, process.env.ACCESS_JWT_KEY);
 
-    res.status(StatusCodes.OK).json({ accessToken });
+    // Return access token and user
+    res.status(StatusCodes.OK).json({
+        accessToken,
+        user,
+    });
 };
 
 export const authenticateController = async (req: Request, res: Response) => {
@@ -47,10 +51,15 @@ export const authenticateController = async (req: Request, res: Response) => {
         return;
     }
 
+    console.log("authenticate", authHeader);
+
     const token = authHeader.split(" ")[1];
 
     try {
         const payload = jwt.verify(token, process.env.ACCESS_JWT_KEY!);
+
+        res.setHeader("Authorization", authHeader);
+
         // Pas besoin de payload dans la réponse, juste status
         res.sendStatus(StatusCodes.OK);
     } catch (e) {
@@ -60,6 +69,8 @@ export const authenticateController = async (req: Request, res: Response) => {
 
 export const getUserController = async (req: Request, res: Response) => {
     const authHeader = req.headers.authorization;
+
+    console.log("authHeader", authHeader);
 
     if (!authHeader?.startsWith("Bearer ")) {
         res.sendStatus(StatusCodes.UNAUTHORIZED);

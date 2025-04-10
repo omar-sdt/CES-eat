@@ -3,7 +3,7 @@ import Home from "./pages/home"
 import Profile from "./pages/profile"
 import Orders from "./pages/orders"
 import Login from "./pages/login"
-import { AuthProvider, useAuth } from "./context/auth-context"
+import { AuthProvider } from "./context/auth-context"
 import { JSX, ReactNode } from "react"
 import Navbar from "@/components/navbar"
 import { CartProvider } from "./context/cart-context"
@@ -14,16 +14,15 @@ import Home_livreur from "./pages/Home_livreur"
 import Commandes from './pages/Commandes';
 import CommandeInfo from './pages/CommandeInfo';
 import CommandeSuivi from './pages/CommandeSuivi';
-
-
-
-
+import { useSelector } from "react-redux";
+import { RootState } from "@/store.ts";
+import Payment from "./pages/payment"
 
 function PrivateRoute({ element }: { element: JSX.Element }) {
-  const { accessToken } = useAuth();
+  const { userToken } = useSelector((state: RootState) => state.auth);
 
   // Si l'utilisateur n'est pas connecté, redirige vers la page de login
-  return accessToken ? element : <Navigate to="/login" />;
+  return userToken ? element : <Navigate to="/login" />;
 }
 
 function Layout({ children }: { children: ReactNode }) {
@@ -47,8 +46,7 @@ function App() {
         <AuthProvider>
           <CartProvider>
             <FilterProvider>
-
-              <Layout> {/* ← On utilise le composant Layout ici */}
+              <Layout>
                 <Routes>
                   <Route path="*" element={<Navigate to="/home" />} />
                   <Route path="/" element={<Navigate to="/home" />} />
@@ -61,12 +59,13 @@ function App() {
                   <Route path="/commandes" element={<Commandes />} />
                   <Route path="/commande-info" element={<CommandeInfo />} />
                   <Route path="/commande-suivi" element={<CommandeSuivi />} />
-
-
                   <Route path="/profile" element={<PrivateRoute element={<Profile />} />} />
+
+                  {/* Routes privées */}
+                  <Route path="/profile" element={<PrivateRoute element={<Profile />} />} />
+                  <Route path="/payment" element={<PrivateRoute element={<Payment />} />} />
                 </Routes>
               </Layout>
-
             </FilterProvider>
           </CartProvider>
         </AuthProvider>
