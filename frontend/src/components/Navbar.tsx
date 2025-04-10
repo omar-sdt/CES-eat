@@ -2,6 +2,7 @@ import { Link, useLocation } from 'react-router-dom';
 import { Button } from './ui/button';
 import Cart from './cart';
 import { ArrowLeft } from 'lucide-react';
+import { CookingPot } from 'lucide-react';
 import { DropdownNavbar } from './drop-down-navbar';
 import { useSelector } from "react-redux";
 import { RootState } from "@/store.ts";

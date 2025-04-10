@@ -6,14 +6,15 @@ import { userLoginSchema, userRegisterSchema } from "../schemas/user.schema";
 import prisma from "../lib/prisma";
 
 export const registerController = async (req: Request, res: Response) => {
-    const { name, email, password } = userRegisterSchema.parse(req.body);
+    const { name, email, password, role } = userRegisterSchema.parse(req.body);
     const passwordHash = await bcrypt.hash(password, 10);
 
     const newUser = await prisma.user.create({
         data: {
             name,
             email,
-            password: passwordHash
+            password: passwordHash,
+            role
         }
     });
 

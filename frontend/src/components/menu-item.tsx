@@ -1,16 +1,11 @@
-import { Menu, menuSchema } from "@/schemas/menuItemSchema"
-import { DialogChooseMenu } from "./dialog-choose-menu";
+import {Dish} from "@/schemas/dish.schema.ts";
+import {DialogChooseMenu} from "@/components/dialog-choose-menu.tsx";
 
+type MenuItemProps = {
+    dish: Dish;
+}
 
-const MenuItem = ({ menu, restaurantId }: { menu: Menu, restaurantId: string }) => {
-    const result = menuSchema.safeParse(menu);
-
-    if (!result.success) {
-        return <div>Erreur de données : {result.error.message}</div>;
-    }
-
-    const { image, name, description, basePrice } = result.data;
-
+const MenuItem = ({dish}: MenuItemProps) => {
     return (
         <div className="relative w-full group">
             <div className="z-0 absolute inset-0 bg-green-primary opacity-0 group-hover:opacity-100 transition-opacity duration-200 ease-in-out blur-md rounded-lg z-10"></div>
@@ -21,19 +16,19 @@ const MenuItem = ({ menu, restaurantId }: { menu: Menu, restaurantId: string }) 
                     ease-in-out blur-xl rounded-lg
                     "></div>
                 <div className="flex-1 h-full w-75 overflow-hidden">
-                    <h3 className="text-lg font-semibold">{name.toUpperCase()}</h3>
-                    <p className="font-bold mt-2">{basePrice}€</p>
+                    <h3 className="text-lg font-semibold">{dish.name}</h3>
+                    <p className="font-bold mt-2">{dish.price}€</p>
                     <p className="text-gray-600 text-sm line-clamp-2">
-                        {description}
+                        {dish.description}
                     </p>
                 </div>
                 <img
-                    src={image}
-                    alt={name}
+                    src="/menu/crispy_naan_creamy.png"
+                    alt={dish.description}
                     className="w-24 h-auto object-fit rounded-lg group-hover:blur-[1px] transition-all duration-300 ease-in-out"
                 />
 
-                <DialogChooseMenu menu={result.data} restaurantId={restaurantId} />
+                <DialogChooseMenu dish={dish} />
             </div>
         </div>
     )

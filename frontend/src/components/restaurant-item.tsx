@@ -13,19 +13,19 @@ const RestaurantItem = ({ resto }: RestaurantProps) => {
         return <div>Erreur de données : {result.error.message}</div>;
     }
 
-    const { id, name, rating, src, alt } = result.data;
+    const { _id, name, rating } = result.data;
 
     return (
-        <Link className="flex flex-col gap-2 w-[236px] group" to={`/restaurant/${id}`}>
+        <Link className="flex flex-col gap-2 w-[236px] group" to={`/restaurant/${_id}`}>
 
             <div className="relative w-full min-h-[7rem]">
                 {/* Effet de blur devant l'image */}
                 <div className="z-0 absolute inset-0 bg-green-primary opacity-0 group-hover:opacity-100 transition-opacity duration-200 ease-in-out blur-md rounded-lg z-10"></div>
 
                 <img
-                    src={src}
-                    alt={alt}
-                    className="w-full h-[7rem] rounded-lg shadow-lg z-10 absolute"
+                    src="/restaurant/kfc.svg"
+                    alt="Une image de restaurant"
+                    className="w-full h-auto rounded-lg shadow-lg z-10 absolute"
                     style={{ maxHeight: '200px', objectFit: 'cover' }}
                 />
             </div>

@@ -6,26 +6,21 @@
   "scripts": {
     "start:dev": "pnpx nodemon",
     "start": "pnpm build && node dist/app.js",
-    "build": "rimraf ./dist && tsc",
-    "seed": "node dist/seed.js"
+    "build": "rimraf ./dist && tsc"
   },
   "keywords": [],
   "author": "",
   "license": "ISC",
   "dependencies": {
     "amqplib": "^0.10.7",
-    "cors": "^2.8.5",
     "dotenv": "^16.4.7",
     "express": "^4.21.2",
     "http-status-codes": "^2.3.0",
-    "mongoose": "^8.13.1",
-    "morgan": "^1.10.0",
-    "zod": "^3.24.2"
+    "socket.io": "^4.8.1"
   },
   "devDependencies": {
     "@types/amqplib": "^0.10.7",
     "@types/express": "^5.0.1",
-    "@types/morgan": "^1.9.9",
     "@types/node": "^22.13.13",
     "concurrently": "^9.1.2",
     "nodemon": "^3.1.9",

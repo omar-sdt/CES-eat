@@ -1,5 +1,6 @@
 import express from 'express';
 import dotenv from 'dotenv';
+import cors from 'cors';
 import {connectDB} from "./lib/mongo";
 import {validateData} from "./middlewares/validation.middleware";
 import {restaurantPostSchema} from "./schemas/restaurant.schema";
@@ -23,12 +24,16 @@ import {
     getOrdersByUser,
     validateOrder
 } from "./controllers/order.controller";
+import {initRabbit} from "./lib/rabbit";
+import morgan from "morgan";
 
 dotenv.config();
 
 const app = express();
 
+app.use(cors());
 app.use(express.json());
+app.use(morgan('dev'));
 
 app.get('/health', (req, res) => {
     res.status(200).json({
@@ -57,7 +62,7 @@ app.get('/order/:userId/user', getOrdersByUser);
 
 const start = async () => {
     await connectDB();
-
+    await initRabbit();
     app.listen(process.env.PORT, () => {
         return console.log(`Express is listening at http://localhost:${process.env.PORT}`);
     });

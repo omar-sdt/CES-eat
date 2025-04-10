@@ -1,10 +1,11 @@
-import {z} from "zod";
+import { z } from "zod";
 
 export const userSchema = z.object({
     id: z.string(),
     email: z.string().email(),
     name: z.string().min(1),
     password: z.string(),
+    role: z.enum(['USER', 'RESTAURANT', 'DELIVERY']).default('USER'),
     createdAt: z.string(),
     updatedAt: z.string(),
 })
@@ -15,6 +16,7 @@ export const registerUserSchema = z.object({
     email: z.string().email('Invalid email address'),
     name: z.string().min(1, 'Name is required'),
     password: z.string().min(6, 'Password must be at least 6 characters long'),
+    role: z.enum(['USER', 'RESTAURANT', 'DELIVERY']),
 });
 
 export type RegisterUser = z.infer<typeof registerUserSchema>;

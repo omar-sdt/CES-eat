@@ -3,35 +3,34 @@ FROM node:23.3
 # Create app directory
 WORKDIR /usr/src/app
 
-# Install pnpm
-RUN npm install -g pnpm
+# Install pnpm & typescript globally
+RUN npm install -g pnpm typescript
 
-# Install typescript
-RUN npm install -g typescript
-
-# Install app dependencies
+# Copy package files & install dependencies
 COPY package.json .
 COPY pnpm-lock.yaml .
 RUN pnpm install
 
-# Bundle app source
+# Copy the rest of the app
 COPY . .
 
-# Delete the existing build directory
+# Delete previous build
 RUN rm -rf ./dist
 
-# Build the application
+# Build the TypeScript app
 RUN tsc
 
-# Run in production mode
+# Optional seed step
+ARG SHOULD_SEED=false
+RUN if [ "$SHOULD_SEED" = "true" ]; then pnpm run seed; fi
+
+# Environment variables
 ENV NODE_ENV=production
 ENV PORT=3000
 ENV DB_NAME=mydb
 ENV DB_USER=root
 ENV DB_PASS=root
 ENV DB_AUTH_SOURCE=admin
-ENV ACCESS_JWT_KEY=secret
-
 ENV MONGO_DB_HOST=mongo
 ENV MONGO_DB_NAME=mydb
 ENV MONGO_DB_USER=root
