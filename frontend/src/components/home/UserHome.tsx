@@ -1,9 +1,9 @@
 "use client";
 
-import RestaurantList from "@/components/restaurant-list";
-import SponsorshipSection from "@/components/sponsorship-section";
+import RestaurantList from "@/components/restaurant-list1";
+import SponsorshipSection from "@/components/sponsorship-section1";
 import { Button } from "@/components/ui/button";
-import FilterList from "@/components/filter-list";
+import FilterList from "@/components/filter-list1";
 import { useFilter } from "@/context/filter-context";
 import { useGetAllRestaurantsQuery } from "@/services/restaurant.service.ts";
 

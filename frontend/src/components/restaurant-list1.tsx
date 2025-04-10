@@ -1,11 +1,11 @@
-import RestaurantItem from './restaurant-item';
+import RestaurantItem from './restaurant-item1';
 import { Restaurant } from "@/schemas/restaurantSchema.ts";
 
 type RestaurantListProps = {
     restaurants: Restaurant[];
 }
 
-const RestaurantList = ({restaurants}: RestaurantListProps) => {
+const RestaurantList = ({ restaurants }: RestaurantListProps) => {
     return (
         <div className='flex flex-wrap gap-4'>
             {restaurants.map((resto) => (

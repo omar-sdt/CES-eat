@@ -1,13 +1,13 @@
-import {RegisterForm} from "@/components/register-form.tsx";
+import { LoginForm } from "@/components/login-form1"
 
-const Register = () => {
+const Login = () => {
     return (
         <div className="flex w-full justify-center">
             <div className="w-full max-w-3xl mt-4">
-                <RegisterForm />
+                <LoginForm />
             </div>
         </div>
     )
 }
 
-export default Register
+export default Login

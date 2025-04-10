@@ -2,9 +2,9 @@ import { useNavigate, useParams } from "react-router-dom";
 import { ArrowLeft, Calendar, Map, Phone, Star } from "lucide-react";
 import { LoadScript, GoogleMap, Marker } from "@react-google-maps/api";
 import { menu } from "@/data/menu";
-import MenuItem from "@/components/menu-item";
+import MenuItem from "@/components/menu-item1";
 import { Button } from "@/components/ui/button";
-import {useGetRestaurantByIdQuery} from "@/services/restaurant.service.ts";
+import { useGetRestaurantByIdQuery } from "@/services/restaurant.service.ts";
 
 const Restaurant = () => {
     const { id } = useParams();
@@ -15,7 +15,7 @@ const Restaurant = () => {
         return null;
     }
 
-    const {data} = useGetRestaurantByIdQuery(id);
+    const { data } = useGetRestaurantByIdQuery(id);
 
     if (!data) {
         return <div>Loading...</div>;
@@ -78,9 +78,9 @@ const Restaurant = () => {
                         <p className="text-sm text-gray-600">
                             {horaires.length > 0 ? horaires.map((horaire, index) => (
                                 <span key={index} className="flex flex-row gap-1 items-center">
-                                        <span>{horaire}</span>
+                                    <span>{horaire}</span>
                                     {index < horaires.length - 1}
-                                    </span>
+                                </span>
                             )) : "Non renseigné"}
                         </p>
                     </div>

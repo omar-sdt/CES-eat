@@ -1,13 +1,13 @@
-import { LoginForm } from "@/components/login-form"
+import { RegisterForm } from "@/components/register-form1";
 
-const Login = () => {
+const Register = () => {
     return (
         <div className="flex w-full justify-center">
             <div className="w-full max-w-3xl mt-4">
-                <LoginForm />
+                <RegisterForm />
             </div>
         </div>
     )
 }
 
-export default Login
+export default Register

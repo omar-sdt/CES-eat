@@ -1,11 +1,11 @@
-import {Dish} from "@/schemas/dish.schema.ts";
-import {DialogChooseMenu} from "@/components/dialog-choose-menu.tsx";
+import { Dish } from "@/schemas/dish.schema.ts";
+import { DialogChooseMenu } from "@/components/dialog-choose-menu1";
 
 type MenuItemProps = {
     dish: Dish;
 }
 
-const MenuItem = ({dish}: MenuItemProps) => {
+const MenuItem = ({ dish }: MenuItemProps) => {
     return (
         <div className="relative w-full group">
             <div className="z-0 absolute inset-0 bg-green-primary opacity-0 group-hover:opacity-100 transition-opacity duration-200 ease-in-out blur-md rounded-lg z-10"></div>

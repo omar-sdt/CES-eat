@@ -1,4 +1,4 @@
-import FilterItem from './filter-item';
+import FilterItem from './filter-item1';
 import { filters } from '@/data/filters';
 import { useFilter } from '@/context/filter-context';
 
