@@ -12,14 +12,16 @@ import {
 } from "@/components/ui/card"
 import { Input } from "@/components/ui/input"
 import { Label } from "@/components/ui/label"
-import {Link, useNavigate} from "react-router-dom"
-import {useForm} from "react-hook-form";
-import {zodResolver} from "@hookform/resolvers/zod";
-import {RegisterUser, registerUserSchema} from "@/schemas/user.schema.ts";
-import {useDispatch} from "react-redux";
-import {registerUser} from "@/features/auth/auth.actions.ts";
-import {AppDispatch} from "@/store.ts";
-import {toast} from "sonner";
+import { Link, useNavigate } from "react-router-dom"
+import { useForm } from "react-hook-form";
+import { zodResolver } from "@hookform/resolvers/zod";
+import { RegisterUser, registerUserSchema } from "@/schemas/user.schema.ts";
+import { useDispatch } from "react-redux";
+import { registerUser } from "@/features/auth/auth.actions.ts";
+import { AppDispatch } from "@/store.ts";
+import { toast } from "sonner";
+import { Select, SelectContent, SelectGroup, SelectItem, SelectTrigger, SelectValue } from "./ui/select"
+import { Controller } from "react-hook-form" // Import ajouté
 
 export function RegisterForm({
     className,
@@ -31,6 +33,7 @@ export function RegisterForm({
     const {
         register,
         handleSubmit,
+        control, // Ajouté pour le Select
         formState: { errors },
     } = useForm<RegisterUser>({
         resolver: zodResolver(registerUserSchema)
@@ -39,11 +42,9 @@ export function RegisterForm({
     const onSubmit = async (data: RegisterUser) => {
         try {
             const user = await dispatch(registerUser(data)).unwrap();
-
             toast.success(`Ton compte a été créé, ${user.name} !`);
             navigate("/login");
         } catch (err: any) {
-            // err est typé avec ton RegisterUserError
             console.log(err);
             toast.error("Erreur inconnue");
         }
@@ -105,6 +106,31 @@ export function RegisterForm({
                                     <p className="text-red-500 text-sm">{errors.password.message}</p>
                                 )}
                             </div>
+                            <div className="flex flex-col gap-2">
+                                <Label htmlFor="role">Rôle</Label>
+                                <Controller
+                                    name="role"
+                                    control={control}
+                                    render={({ field }) => (
+                                        <Select onValueChange={field.onChange} value={field.value}>
+                                            <SelectTrigger className="w-full">
+                                                <SelectValue placeholder="Sélectionner un rôle" />
+                                            </SelectTrigger>
+                                            <SelectContent>
+                                                <SelectGroup>
+                                                    <SelectItem value="USER">Utilisateur</SelectItem>
+                                                    <SelectItem value="RESTAURANT">Restaurateur</SelectItem>
+                                                    <SelectItem value="DELIVERY">Livreur</SelectItem>
+                                                </SelectGroup>
+                                            </SelectContent>
+                                        </Select>
+                                    )}
+                                />
+                                {errors.role && (
+                                    <p className="text-red-500 text-sm">{errors.role.message}</p>
+                                )}
+                            </div>
+
                             <Button type="submit" effect="shineHover" className="w-full">
                                 Créer un compte
                             </Button>
@@ -118,7 +144,7 @@ export function RegisterForm({
                     </form>
                 </CardContent>
                 <CardFooter>
-
+                    {/* Footer content */}
                 </CardFooter>
             </Card>
         </div>
