@@ -50,16 +50,21 @@ function App() {
                 <Routes>
                   <Route path="*" element={<Navigate to="/home" />} />
                   <Route path="/" element={<Navigate to="/home" />} />
-                  <Route path="/home" element={<Home />} />
+
+                  {/* Routes publiques : User */}
                   <Route path="/orders" element={<PrivateRoute element={<Orders />} />} />
+                  <Route path="/home" element={<Home />} />
                   <Route path="/login" element={<Login />} />
                   <Route path="/register" element={<Register />} />
                   <Route path="/restaurant/:id" element={<Restaurant />} />
+                  <Route path="/profile" element={<PrivateRoute element={<Profile />} />} />
+
+                  {/* Routes publiques : Delivery */}
                   <Route path="/home_livreur" element={<Home_livreur />} />
+                  <Route path="/commande-suivi" element={<CommandeSuivi />} />
                   <Route path="/commandes" element={<Commandes />} />
                   <Route path="/commande-info" element={<CommandeInfo />} />
-                  <Route path="/commande-suivi" element={<CommandeSuivi />} />
-                  <Route path="/profile" element={<PrivateRoute element={<Profile />} />} />
+
 
                   {/* Routes privées */}
                   <Route path="/profile" element={<PrivateRoute element={<Profile />} />} />

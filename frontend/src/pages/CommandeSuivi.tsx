@@ -1,4 +1,3 @@
-import React from 'react';
 import { useLocation } from 'react-router-dom';
 import CommandeCard from '@/components/CommandeCard';
 import NavbarSimple from '@/components/NavbarSimple';
@@ -31,7 +30,7 @@ const CommandeSuivi = () => {
 
         {/* Bouton appeler */}
         <button className="bg-black text-white px-4 py-2 rounded-full mt-4 text-sm">
-            Appeler le client
+          Appeler le client
         </button>
 
         {/* Texte date */}
